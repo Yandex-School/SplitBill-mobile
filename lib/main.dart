@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:split_bill/core/router/app_router.dart';
 
-void main() {
-  runApp(const MyApp());
+void main(List<String> args) {
+  runApp(SplitBills());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class SplitBills extends StatelessWidget {
+  SplitBills({super.key});
 
+<<<<<<< HEAD
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -68,6 +71,14 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+=======
+  final AppRouter router = AppRouter();
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      routerConfig: router.router,
+>>>>>>> 0e5453e52575b9365afe8f3c53a42c072480f1bd
     );
   }
 }
