@@ -1,4 +1,3 @@
-
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_model.g.dart';
@@ -19,8 +18,7 @@ class UserModel {
     this.password,
   });
 
-  factory UserModel.fromJson(Map<String, Object?> json) => _$UserModelFromJson(json);
+  factory UserModel.fromJson(Map<String, Object?> json) =>
+      _$UserModelFromJson(json);
   Map<String, Object?> toJson() => _$UserModelToJson(this);
 }
-
-

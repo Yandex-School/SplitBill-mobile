@@ -12,6 +12,7 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
       price: (json['price'] as num?)?.toDouble(),
       roomId: (json['roomId'] as num?)?.toInt(),
     );
+    
 
 Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
     <String, dynamic>{
