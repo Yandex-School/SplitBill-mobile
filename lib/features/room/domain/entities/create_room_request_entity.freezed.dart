@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CreateRoomRequestEntity {
   String get name => throw _privateConstructorUsedError;
   int get ownerId => throw _privateConstructorUsedError;
+  List<ProductEntity>? get products => throw _privateConstructorUsedError;
 
   /// Create a copy of CreateRoomRequestEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +33,7 @@ abstract class $CreateRoomRequestEntityCopyWith<$Res> {
           CreateRoomRequestEntity value, $Res Function(CreateRoomRequestEntity) then) =
       _$CreateRoomRequestEntityCopyWithImpl<$Res, CreateRoomRequestEntity>;
   @useResult
-  $Res call({String name, int ownerId});
+  $Res call({String name, int ownerId, List<ProductEntity>? products});
 }
 
 /// @nodoc
@@ -52,6 +53,7 @@ class _$CreateRoomRequestEntityCopyWithImpl<$Res, $Val extends CreateRoomRequest
   $Res call({
     Object? name = null,
     Object? ownerId = null,
+    Object? products = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -62,6 +64,10 @@ class _$CreateRoomRequestEntityCopyWithImpl<$Res, $Val extends CreateRoomRequest
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
               as int,
+      products: freezed == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<ProductEntity>?,
     ) as $Val);
   }
 }
@@ -74,7 +80,7 @@ abstract class _$$CreateRoomRequestEntityImplCopyWith<$Res>
       __$$CreateRoomRequestEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, int ownerId});
+  $Res call({String name, int ownerId, List<ProductEntity>? products});
 }
 
 /// @nodoc
@@ -92,6 +98,7 @@ class __$$CreateRoomRequestEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? ownerId = null,
+    Object? products = freezed,
   }) {
     return _then(_$CreateRoomRequestEntityImpl(
       name: null == name
@@ -102,6 +109,10 @@ class __$$CreateRoomRequestEntityImplCopyWithImpl<$Res>
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
               as int,
+      products: freezed == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<ProductEntity>?,
     ));
   }
 }
@@ -109,16 +120,30 @@ class __$$CreateRoomRequestEntityImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CreateRoomRequestEntityImpl extends _CreateRoomRequestEntity {
-  const _$CreateRoomRequestEntityImpl({required this.name, required this.ownerId}) : super._();
+  const _$CreateRoomRequestEntityImpl(
+      {required this.name,
+      required this.ownerId,
+      final List<ProductEntity>? products})
+      : _products = products,
+        super._();
 
   @override
   final String name;
   @override
   final int ownerId;
+  final List<ProductEntity>? _products;
+  @override
+  List<ProductEntity>? get products {
+    final value = _products;
+    if (value == null) return null;
+    if (_products is EqualUnmodifiableListView) return _products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'CreateRoomRequestEntity(name: $name, ownerId: $ownerId)';
+    return 'CreateRoomRequestEntity(name: $name, ownerId: $ownerId, products: $products)';
   }
 
   @override
@@ -127,11 +152,13 @@ class _$CreateRoomRequestEntityImpl extends _CreateRoomRequestEntity {
         (other.runtimeType == runtimeType &&
             other is _$CreateRoomRequestEntityImpl &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.ownerId, ownerId) || other.ownerId == ownerId));
+            (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
+            const DeepCollectionEquality().equals(other._products, _products));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, ownerId);
+  int get hashCode => Object.hash(runtimeType, name, ownerId,
+      const DeepCollectionEquality().hash(_products));
 
   /// Create a copy of CreateRoomRequestEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -143,14 +170,18 @@ class _$CreateRoomRequestEntityImpl extends _CreateRoomRequestEntity {
 }
 
 abstract class _CreateRoomRequestEntity extends CreateRoomRequestEntity {
-  const factory _CreateRoomRequestEntity({required final String name, required final int ownerId}) =
-      _$CreateRoomRequestEntityImpl;
+  const factory _CreateRoomRequestEntity(
+      {required final String name,
+      required final int ownerId,
+      final List<ProductEntity>? products}) = _$CreateRoomRequestEntityImpl;
   const _CreateRoomRequestEntity._() : super._();
 
   @override
   String get name;
   @override
   int get ownerId;
+  @override
+  List<ProductEntity>? get products;
 
   /// Create a copy of CreateRoomRequestEntity
   /// with the given fields replaced by the non-null parameter values.
