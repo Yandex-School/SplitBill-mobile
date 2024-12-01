@@ -29,24 +29,21 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.8
-  dartz: ^0.10.1
+ 
   equatable: ^2.0.7
   flutter:
     sdk: flutter
-<<<<<<< HEAD
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
+ 
   freezed: ^2.5.7
   freezed_annotation: ^2.4.4
   dartz: ^0.10.1
   json_annotation: ^4.9.0
 
-=======
   go_router: ^14.6.1
->>>>>>> 0e5453e52575b9365afe8f3c53a42c072480f1bd
 
 dev_dependencies:
 
@@ -56,14 +53,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
-<<<<<<< HEAD
   json_serializable: ^6.9.0
   build_runner: ^2.4.13
 
-=======
-  flutter_test:
-    sdk: flutter
->>>>>>> 0e5453e52575b9365afe8f3c53a42c072480f1bd
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
