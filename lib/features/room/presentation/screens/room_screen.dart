@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:split_bill/core/enums/enums.dart';
 import 'package:split_bill/core/extensions/media_query_extension.dart';
 import 'package:split_bill/core/theme/app_colors.dart';
@@ -105,8 +106,14 @@ class RoomScreen extends StatelessWidget {
                 payStatus: PayStatus.INITAL,
               );
             },
-          )
+          ),
         ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.go('/scan-room/123123'),
+        backgroundColor: AppColors.PRIMARY_COLOR,
+        child: const Icon(Icons.qr_code_2_rounded),
       ),
     );
   }
