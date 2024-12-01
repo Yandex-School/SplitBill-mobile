@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:split_bill/presentation/login_page/core/utils/text_utils.dart';
-import 'package:split_bill/presentation/login_page/domain/providers/login_provider.dart';
-import '../widgets/custom_button.dart';
+import 'package:split_bill/core/router/app_router.dart';
+import 'package:split_bill/core/utils/text_utils.dart';
+import 'package:split_bill/core/widgets/custom_button.dart';
+import 'package:split_bill/features/login/presentation/provider/login_provider.dart';
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<LoginProvider>(context);
 
     return Scaffold(
-      backgroundColor: Color(0xff051326),
+      backgroundColor: const Color(0xff051326),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xff051326),
+        backgroundColor: const Color(0xff051326),
         elevation: 0.0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, size: 25, color: Colors.white),
@@ -32,13 +34,13 @@ class SignUpPage extends StatelessWidget {
                 children: [
                   const Text("Create Account", style: TextUtils.headingStyle),
                   const SizedBox(height: 40),
-                  TextField(
-                    decoration: const InputDecoration(
+                  const TextField(
+                    decoration: InputDecoration(
                       labelText: "Full Name",
                       labelStyle: TextStyle(color: TextUtils.grey, fontSize: 14),
                       prefixIcon: Icon(Icons.person, color: TextUtils.grey),
                       filled: true,
-                      fillColor:Color(0xff051326),
+                      fillColor: Color(0xff051326),
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -51,7 +53,7 @@ class SignUpPage extends StatelessWidget {
                       prefixIcon: const Icon(Icons.email, color: TextUtils.grey),
                       errorText: loginProvider.isValidEmail ? null : "Enter valid email",
                       filled: true,
-                      fillColor: Color(0xff051326),
+                      fillColor: const Color(0xff051326),
                       border: const OutlineInputBorder(),
                     ),
                   ),
@@ -72,12 +74,12 @@ class SignUpPage extends StatelessWidget {
                       ),
                       errorText: loginProvider.isValidPassword ? null : "Invalid password",
                       filled: true,
-                      fillColor: Color(0xff051326),
+                      fillColor: const Color(0xff051326),
                       border: const OutlineInputBorder(),
                     ),
                   ),
-                      const SizedBox(height: 20),
-                         TextField(
+                  const SizedBox(height: 20),
+                  TextField(
                     onChanged: loginProvider.setPassword,
                     obscureText: loginProvider.showPassword,
                     decoration: InputDecoration(
@@ -93,7 +95,7 @@ class SignUpPage extends StatelessWidget {
                       ),
                       errorText: loginProvider.isValidPassword ? null : "Invalid password",
                       filled: true,
-                      fillColor:Color(0xff051326),
+                      fillColor: const Color(0xff051326),
                       border: const OutlineInputBorder(),
                     ),
                   ),
@@ -115,7 +117,7 @@ class SignUpPage extends StatelessWidget {
                         const Text("Already have an account?", style: TextStyle(color: Colors.white, fontSize: 16)),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/login');
+                            context.pop();
                           },
                           child: const Text(
                             " Sign in",

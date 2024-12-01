@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../models/page_data.dart';
+import 'package:split_bill/features/onboarding/presentation/widgets/page_data.dart';
 
 class PageWidget extends StatelessWidget {
   final PageData page;
 
-  const PageWidget({Key? key, required this.page}) : super(key: key);
+  const PageWidget({super.key, required this.page});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class PageWidget extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-        SizedBox(height: 16.0), 
+        const SizedBox(height: 16.0),
 
         // Заголовок
         Text(
@@ -35,7 +35,7 @@ class PageWidget extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 8.0), 
+        const SizedBox(height: 8.0),
 
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),

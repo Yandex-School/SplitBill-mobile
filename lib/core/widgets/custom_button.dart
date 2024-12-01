@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -7,17 +8,16 @@ class CustomButton extends StatelessWidget {
   final Color endColor;
 
   const CustomButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onPressed,
     this.startColor = Colors.orange,
-    this.endColor = Colors.yellow, 
-  }) : super(key: key);
+    this.endColor = Colors.yellow,
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-  
       onTap: onPressed,
       child: Container(
         alignment: Alignment.center,
@@ -26,8 +26,12 @@ class CustomButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           gradient: LinearGradient(colors: [startColor, endColor]),
-          boxShadow: [
-            BoxShadow(color: Colors.grey, blurRadius: 13, offset: Offset(2.5, 4.5)),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: 13,
+              offset: Offset(2.5, 4.5),
+            ),
           ],
         ),
         child: Row(

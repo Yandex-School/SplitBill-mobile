@@ -1,9 +1,8 @@
 import 'package:concentric_transition/page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:split_bill/features/room/presentation/screens/room_screen.dart';
-import 'package:split_bill/models/page_data.dart';
-import 'package:split_bill/widgets/page_widget.dart';
+import 'package:split_bill/features/onboarding/presentation/widgets/page_data.dart';
+import 'package:split_bill/features/onboarding/presentation/widgets/page_widget.dart';
 
 final pages = [
   const PageData(
@@ -50,7 +49,7 @@ class ConcentricAnimationOnboarding extends StatelessWidget {
         ),
         scaleFactor: 2,
         onFinish: () {
-          context.go('/event-rooms');
+          context.go('/login');
         },
         itemBuilder: (index) {
           final page = pages[index % pages.length];

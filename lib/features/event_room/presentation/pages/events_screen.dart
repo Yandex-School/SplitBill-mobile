@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:split_bill/core/theme/app_colors.dart';
 import 'package:split_bill/features/event_room/presentation/widgets/list_item.dart';
-import 'package:split_bill/presentation/login_page/pages/login_page.dart';
+import 'package:split_bill/features/login/presentation/screen/login_screen.dart';
 import '../../domain/controllers/list_controller.dart';
 import '../widgets/custom_speed_dial.dart';
 
@@ -27,21 +28,6 @@ class EventScreen extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.person,
-              color: Color(0xff051326),
-            ),
-            onPressed: () {
-              // Переход на страницу логина
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
-              );
-            },
-          ),
-        ],
       ),
       body: Consumer<ListController>(
         builder: (context, controller, _) {
@@ -51,8 +37,8 @@ class EventScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               final item = controller.items[index];
               return ListItem(
-              
                 record: item,
+                onTap: () => context.go('/event-rooms/room'),
                 onAdd: () => controller.addItem(item),
                 onEdit: () => controller.editItem(item),
                 onDelete: () => controller.deleteItem(item),

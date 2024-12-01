@@ -111,7 +111,7 @@ class RoomScreen extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.go('/scan-room/123123'),
+        onPressed: () => context.go('/event-rooms/scan-room/123123'),
         backgroundColor: AppColors.PRIMARY_COLOR,
         child: const Icon(Icons.qr_code_2_rounded),
       ),
