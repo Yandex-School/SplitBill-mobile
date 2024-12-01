@@ -37,7 +37,6 @@ class PageWidget extends StatelessWidget {
         ),
         SizedBox(height: 8.0), 
 
-        // Текст/Описание
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Text(
