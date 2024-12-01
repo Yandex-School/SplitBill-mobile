@@ -75,3 +75,10 @@ class InitFailure extends Failure {
   @override
   List<Object?> get props => [];
 }
+
+class RequiredFieldIsNull extends Failure {
+  const RequiredFieldIsNull();
+
+  @override
+  List<Object?> get props => [];
+}

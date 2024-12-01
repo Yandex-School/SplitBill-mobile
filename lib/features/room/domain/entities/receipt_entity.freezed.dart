@@ -12,7 +12,7 @@ part of 'receipt_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-entity');
 
 /// @nodoc
 mixin _$ReceiptEntity {
@@ -21,14 +21,12 @@ mixin _$ReceiptEntity {
   /// Create a copy of ReceiptEntity
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ReceiptEntityCopyWith<ReceiptEntity> get copyWith =>
-      throw _privateConstructorUsedError;
+  $ReceiptEntityCopyWith<ReceiptEntity> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ReceiptEntityCopyWith<$Res> {
-  factory $ReceiptEntityCopyWith(
-          ReceiptEntity value, $Res Function(ReceiptEntity) then) =
+  factory $ReceiptEntityCopyWith(ReceiptEntity value, $Res Function(ReceiptEntity) then) =
       _$ReceiptEntityCopyWithImpl<$Res, ReceiptEntity>;
   @useResult
   $Res call({List<ProductModel> products});
@@ -61,8 +59,7 @@ class _$ReceiptEntityCopyWithImpl<$Res, $Val extends ReceiptEntity>
 }
 
 /// @nodoc
-abstract class _$$ReceiptEntityImplCopyWith<$Res>
-    implements $ReceiptEntityCopyWith<$Res> {
+abstract class _$$ReceiptEntityImplCopyWith<$Res> implements $ReceiptEntityCopyWith<$Res> {
   factory _$$ReceiptEntityImplCopyWith(
           _$ReceiptEntityImpl value, $Res Function(_$ReceiptEntityImpl) then) =
       __$$ReceiptEntityImplCopyWithImpl<$Res>;
@@ -124,8 +121,7 @@ class _$ReceiptEntityImpl extends _ReceiptEntity {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
 
   /// Create a copy of ReceiptEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -137,8 +133,7 @@ class _$ReceiptEntityImpl extends _ReceiptEntity {
 }
 
 abstract class _ReceiptEntity extends ReceiptEntity {
-  const factory _ReceiptEntity({required final List<ProductModel> products}) =
-      _$ReceiptEntityImpl;
+  const factory _ReceiptEntity({required final List<ProductModel> products}) = _$ReceiptEntityImpl;
   const _ReceiptEntity._() : super._();
 
   @override

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:split_bill/core/DI/dependencies_config.dart';
 import 'package:split_bill/core/router/app_router.dart';
 
-void main(List<String> args) {
+Future<void> main(List<String> args) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupDependencies();
   runApp(SplitBills());
 }
 
