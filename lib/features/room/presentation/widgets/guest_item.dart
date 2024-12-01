@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:split_bill/core/enums/enums.dart';
@@ -23,6 +25,8 @@ class GuestItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int randomizeImage() => Random().nextInt(6);
+
     return Container(
       height: context.height * 0.12,
       margin: const EdgeInsets.all(AppDimens.MARGIN_10),
@@ -37,7 +41,10 @@ class GuestItem extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const CircleAvatar(),
+              CircleAvatar(
+                backgroundColor: AppColors.PRIMARY_COLOR,
+                foregroundImage: AssetImage('assets/png/person-${randomizeImage()}.png'),
+              ),
               const Gap(10),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
