@@ -12,7 +12,7 @@ part of 'product_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-entity');
 
 /// @nodoc
 mixin _$ProductEntity {
@@ -24,14 +24,12 @@ mixin _$ProductEntity {
   /// Create a copy of ProductEntity
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProductEntityCopyWith<ProductEntity> get copyWith =>
-      throw _privateConstructorUsedError;
+  $ProductEntityCopyWith<ProductEntity> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ProductEntityCopyWith<$Res> {
-  factory $ProductEntityCopyWith(
-          ProductEntity value, $Res Function(ProductEntity) then) =
+  factory $ProductEntityCopyWith(ProductEntity value, $Res Function(ProductEntity) then) =
       _$ProductEntityCopyWithImpl<$Res, ProductEntity>;
   @useResult
   $Res call({int id, String name, double? price, int roomId});
@@ -79,8 +77,7 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
 }
 
 /// @nodoc
-abstract class _$$ProductEntityImplCopyWith<$Res>
-    implements $ProductEntityCopyWith<$Res> {
+abstract class _$$ProductEntityImplCopyWith<$Res> implements $ProductEntityCopyWith<$Res> {
   factory _$$ProductEntityImplCopyWith(
           _$ProductEntityImpl value, $Res Function(_$ProductEntityImpl) then) =
       __$$ProductEntityImplCopyWithImpl<$Res>;
@@ -132,10 +129,7 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
 
 class _$ProductEntityImpl extends _ProductEntity {
   const _$ProductEntityImpl(
-      {required this.id,
-      required this.name,
-      required this.price,
-      required this.roomId})
+      {required this.id, required this.name, required this.price, required this.roomId})
       : super._();
 
   @override

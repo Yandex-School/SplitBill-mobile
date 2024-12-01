@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:split_bill/core/errors/failures.dart';
 
-///[Usecase] generic usecase with [<T,P>] generics params
+///[Usecase] generic usecases with [<T,P>] generics params
 ///T -> for Type of incoming instances
 ///P -> for parameters of methods
 abstract class UseCase<Type, Params> {
