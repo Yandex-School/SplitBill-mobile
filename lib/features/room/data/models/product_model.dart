@@ -15,7 +15,6 @@ class ProductModel {
     this.roomId,
   });
 
-  factory ProductModel.fromJson(Map<String, Object?> json) =>
-      _$ProductModelFromJson(json);
+  factory ProductModel.fromJson(Map<String, Object?> json) => _$ProductModelFromJson(json);
   Map<String, Object?> toJson() => _$ProductModelToJson(this);
 }

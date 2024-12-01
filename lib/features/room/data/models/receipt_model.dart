@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:split_bill/features/room_details/data/models/product_model.dart';
+import 'package:split_bill/features/room/data/models/product_model.dart';
 
 part 'receipt_model.g.dart';
 
