@@ -10,7 +10,7 @@ class ProductRepositoryImpl implements IProductRepository {
   ProductRepositoryImpl({required this.productDatasources});
 
   @override
-  Future<Either<Failure, bool>> crerateProduct(ProductEntity product) async {
+  Future<Either<Failure, bool>> createProduct(ProductEntity product) async {
     try {
       final result = await productDatasources.createProduct(
         product.toModel(),
@@ -22,7 +22,7 @@ class ProductRepositoryImpl implements IProductRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> crerateProducts(
+  Future<Either<Failure, bool>> createProducts(
       List<ProductEntity> products) async {
     try {
       final result = await productDatasources

@@ -3,7 +3,7 @@ import 'package:split_bill/core/errors/failures.dart';
 import 'package:split_bill/features/room/data/darasources/create_room_request_remoute.dart';
 import 'package:split_bill/features/room/data/models/create_room_request_model.dart';
 import 'package:split_bill/features/room/domain/entities/create_room_request_entity.dart';
-import 'package:split_bill/features/room/domain/repositories/create_room_repository.dart';
+import 'package:split_bill/features/room/domain/repository/create_room_repository.dart';
 
 class CreateRoomRepositoryImpl implements CreateRoomRepository {
   final CreateRoomRemoteDatasource createRoomRemoteDatasource;
