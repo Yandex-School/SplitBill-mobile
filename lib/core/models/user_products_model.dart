@@ -1,6 +1,6 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:split_bill/core/mapper/mapper.dart';
 import 'package:split_bill/features/home/domain/entities/user_products_entity.dart';
+import 'package:json_annotation/json_annotation.dart';
 part 'user_products_model.g.dart';
 
 @JsonSerializable()
