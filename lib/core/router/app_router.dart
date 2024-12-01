@@ -17,7 +17,7 @@ class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const EventScreen(),
+        builder: (context, state) => const ConcentricAnimationOnboarding(),
       ),
       GoRoute(
         path: '/login',
