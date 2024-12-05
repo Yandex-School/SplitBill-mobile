@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:split_bill/core/DI/dependencies_config.dart';
 import 'package:split_bill/core/router/app_router.dart';
 import 'package:split_bill/core/scope/provider_scope.dart';
+import 'package:split_bill/core/theme/theme_notifier.dart';
 
 Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   await setupDependencies();
-  runApp(ProviderScope(child: SplitBills()));
+  runApp(
+    ProviderScope(
+      child: ChangeNotifierProvider(
+        create: (_) => ThemeNotifier(),
+        child: SplitBills(),
+      ),
+    ),
+  );
 }
 
 class SplitBills extends StatelessWidget {
@@ -16,8 +25,14 @@ class SplitBills extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: router.router,
+    return Consumer<ThemeNotifier>(
+      builder: (context, themeNotifier, _) {
+        return MaterialApp.router(
+          routerConfig: router.router,
+          theme: themeNotifier.currentTheme,
+          debugShowCheckedModeBanner: false,
+        );
+      },
     );
   }
 }

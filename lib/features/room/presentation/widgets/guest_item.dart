@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:split_bill/core/enums/enums.dart';
 import 'package:split_bill/core/extensions/media_query_extension.dart';
-import 'package:split_bill/core/theme/app_colors.dart';
 import 'package:split_bill/core/theme/app_diemens.dart';
 
 class GuestItem extends StatelessWidget {
@@ -20,11 +19,13 @@ class GuestItem extends StatelessWidget {
     required this.payStatus,
     this.amount,
     this.percentage,
-    this.onAssignPayment,
+    this.onAssignPayment, 
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     int randomizeImage() => Random().nextInt(6);
 
     return Container(
@@ -32,7 +33,7 @@ class GuestItem extends StatelessWidget {
       margin: const EdgeInsets.all(AppDimens.MARGIN_10),
       padding: const EdgeInsets.all(AppDimens.PADDING_12),
       decoration: BoxDecoration(
-        color: const Color(0xff1f2a3c),
+        color: theme.cardColor,
         borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_40),
       ),
       child: Row(
@@ -42,7 +43,7 @@ class GuestItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CircleAvatar(
-                backgroundColor: AppColors.PRIMARY_COLOR,
+                backgroundColor: theme.primaryColor,
                 foregroundImage: AssetImage('assets/png/person-${randomizeImage()}.png'),
               ),
               const Gap(10),
@@ -52,8 +53,7 @@ class GuestItem extends StatelessWidget {
                 children: [
                   Text(
                     name,
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: theme.textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
@@ -64,14 +64,14 @@ class GuestItem extends StatelessWidget {
                           TextSpan(
                             text: '$percentage % ',
                             style: TextStyle(
-                              color: payStatus == PayStatus.PAID ? Colors.green : Colors.red,
+                              color: payStatus == PayStatus.PAID ? theme.colorScheme.secondary : theme.colorScheme.error,
                               fontSize: 14,
                             ),
                             children: [
                               TextSpan(
                                 text: payStatus.name,
-                                style: const TextStyle(
-                                  color: Colors.grey,
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: theme.textTheme.bodyMedium?.color?.withOpacity(0.6),
                                   fontSize: 14,
                                 ),
                               ),
@@ -84,21 +84,21 @@ class GuestItem extends StatelessWidget {
           ),
           payStatus == PayStatus.INITAL
               ? ElevatedButton(
-                  style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(AppColors.PRIMARY_COLOR),
-                    foregroundColor: WidgetStatePropertyAll(Colors.black),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(theme.primaryColor),
+                    foregroundColor: MaterialStateProperty.all(Colors.black),
                   ),
-                  onPressed: () {},
+                  onPressed: onAssignPayment,
                   child: const Text('Добавить сумму'),
                 )
               : Text(
                   "\$ $amount",
                   style: TextStyle(
-                    color: payStatus == PayStatus.PAID ? Colors.green : Colors.red,
+                    color: payStatus == PayStatus.PAID ? theme.colorScheme.secondary : theme.colorScheme.error,
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),
-                )
+                ),
         ],
       ),
     );

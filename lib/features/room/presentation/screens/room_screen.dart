@@ -4,11 +4,9 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:split_bill/core/enums/enums.dart';
 import 'package:split_bill/core/extensions/media_query_extension.dart';
-import 'package:split_bill/core/theme/app_colors.dart';
 import 'package:split_bill/core/theme/app_diemens.dart';
 import 'package:split_bill/features/room/presentation/widgets/guest_item.dart';
 import 'package:split_bill/features/room/presentation/widgets/payment_info_status_widget.dart';
-
 import '../widgets/to_pay_status_widget.dart';
 
 class RoomScreen extends StatelessWidget {
@@ -16,21 +14,32 @@ class RoomScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(5, 19, 38, 1),
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             pinned: false,
-            backgroundColor: AppColors.PRIMARY_COLOR,
+            backgroundColor: theme.primaryColor,
             expandedHeight: context.height * 0.4,
-            title: const Text("Бобур"),
+            title: Text(
+              "Bobur",
+              style: theme.textTheme.titleLarge?.copyWith(color: theme.primaryTextTheme.titleLarge?.color),
+            ),
             actions: [
-              const CircleAvatar(),
+              CircleAvatar(
+                backgroundColor: theme.brightness == Brightness.dark ? Colors.black : Colors.white,
+                child: Icon(
+                  Icons.person,
+                  color: theme.brightness == Brightness.dark ? Colors.white : Colors.black,
+                ),
+              ),
               const SizedBox(width: 10),
               IconButton.outlined(
                 onPressed: () {},
-                icon: const Icon(Icons.notifications_none_rounded),
+                icon: Icon(Icons.notifications_none_rounded, color: Colors.black),
               ),
               const SizedBox(width: 10),
             ],
@@ -65,15 +74,14 @@ class RoomScreen extends StatelessWidget {
               ),
             ),
           ),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Padding(
               padding: EdgeInsets.all(AppDimens.PADDING_16),
               child: Text(
                 "Статус оплаты",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
+                style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
+                  color: theme.textTheme.titleLarge?.color ?? Colors.black,
                 ),
               ),
             ),
@@ -84,7 +92,7 @@ class RoomScreen extends StatelessWidget {
               width: context.width,
               height: context.height * 0.05,
               decoration: BoxDecoration(
-                color: const Color(0xff010d1e),
+                color: theme.cardColor,
                 borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
               ),
               child: const TotalPaymentStatus(
@@ -112,8 +120,8 @@ class RoomScreen extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.go('/event-rooms/scan-room/123123'),
-        backgroundColor: AppColors.PRIMARY_COLOR,
-        child: const Icon(Icons.qr_code_2_rounded),
+        backgroundColor: theme.primaryColor,
+        child: Icon(Icons.qr_code_2_rounded, color: Colors.black),
       ),
     );
   }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:split_bill/core/theme/app_diemens.dart';
 
@@ -9,11 +8,13 @@ class PaymentInfoStatusWidget extends StatelessWidget {
   const PaymentInfoStatusWidget({
     super.key,
     required this.toPay,
-    required this.paid,
+    required this.paid, 
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return SliverPadding(
       padding: const EdgeInsets.symmetric(horizontal: AppDimens.PADDING_16),
       sliver: SliverToBoxAdapter(
@@ -23,16 +24,16 @@ class PaymentInfoStatusWidget extends StatelessWidget {
             Text.rich(
               TextSpan(
                 text: "\$ $toPay ",
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: theme.textTheme.bodyLarge?.color,
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
-                children: const [
+                children: [
                   TextSpan(
                     text: 'Отправлено',
                     style: TextStyle(
-                      color: Colors.white70,
+                      color: theme.textTheme.bodyMedium?.color?.withOpacity(0.7) ?? Colors.white70,
                       fontWeight: FontWeight.normal,
                     ),
                   ),
@@ -42,15 +43,15 @@ class PaymentInfoStatusWidget extends StatelessWidget {
             Text.rich(
               TextSpan(
                 text: "\$ $paid ",
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: theme.textTheme.bodyLarge?.color,
                   fontWeight: FontWeight.bold,
                 ),
-                children: const [
+                children: [
                   TextSpan(
                     text: 'Получено',
                     style: TextStyle(
-                      color: Colors.white70,
+                      color: theme.textTheme.bodyMedium?.color?.withOpacity(0.7) ?? Colors.white70,
                       fontWeight: FontWeight.normal,
                     ),
                   ),
