@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:split_bill/core/theme/app_diemens.dart';
+import 'package:split_bill/core/theme/app_theme.dart';
+
 
 class PaymentInfoStatusWidget extends StatelessWidget {
   final double toPay;
@@ -8,15 +9,13 @@ class PaymentInfoStatusWidget extends StatelessWidget {
   const PaymentInfoStatusWidget({
     super.key,
     required this.toPay,
-    required this.paid, 
+    required this.paid,
   });
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return SliverPadding(
-      padding: const EdgeInsets.symmetric(horizontal: AppDimens.PADDING_16),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       sliver: SliverToBoxAdapter(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -24,18 +23,11 @@ class PaymentInfoStatusWidget extends StatelessWidget {
             Text.rich(
               TextSpan(
                 text: "\$ $toPay ",
-                style: TextStyle(
-                  color: theme.textTheme.bodyLarge?.color,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
+                style: AppTheme.paymentTextStyle(context), 
                 children: [
                   TextSpan(
                     text: 'Отправлено',
-                    style: TextStyle(
-                      color: theme.textTheme.bodyMedium?.color?.withOpacity(0.7) ?? Colors.white70,
-                      fontWeight: FontWeight.normal,
-                    ),
+                    style: AppTheme.paymentSubTextStyle(context), 
                   ),
                 ],
               ),
@@ -43,17 +35,11 @@ class PaymentInfoStatusWidget extends StatelessWidget {
             Text.rich(
               TextSpan(
                 text: "\$ $paid ",
-                style: TextStyle(
-                  color: theme.textTheme.bodyLarge?.color,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: AppTheme.paymentTextStyle(context), 
                 children: [
                   TextSpan(
                     text: 'Получено',
-                    style: TextStyle(
-                      color: theme.textTheme.bodyMedium?.color?.withOpacity(0.7) ?? Colors.white70,
-                      fontWeight: FontWeight.normal,
-                    ),
+                    style: AppTheme.paymentSubTextStyle(context), 
                   ),
                 ],
               ),

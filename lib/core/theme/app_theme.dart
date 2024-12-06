@@ -53,4 +53,22 @@ class AppTheme {
     cardColor: const Color(0xff1f1f1f),
     iconTheme: const IconThemeData(color: AppColors.darkText),
   );
+
+  // Добавляем методы для получения стилей текста
+  static TextStyle paymentTextStyle(BuildContext context) {
+    final theme = Theme.of(context);
+    return TextStyle(
+      color: theme.textTheme.bodyLarge?.color,
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
+    );
+  }
+
+  static TextStyle paymentSubTextStyle(BuildContext context) {
+    final theme = Theme.of(context);
+    return TextStyle(
+      color: theme.textTheme.bodyMedium?.color?.withOpacity(0.7) ?? Colors.white70,
+      fontWeight: FontWeight.normal,
+    );
+  }
 }
