@@ -12,7 +12,7 @@ part of 'create_room_request_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-entity');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CreateRoomRequestEntity {
@@ -29,15 +29,16 @@ mixin _$CreateRoomRequestEntity {
 
 /// @nodoc
 abstract class $CreateRoomRequestEntityCopyWith<$Res> {
-  factory $CreateRoomRequestEntityCopyWith(
-          CreateRoomRequestEntity value, $Res Function(CreateRoomRequestEntity) then) =
+  factory $CreateRoomRequestEntityCopyWith(CreateRoomRequestEntity value,
+          $Res Function(CreateRoomRequestEntity) then) =
       _$CreateRoomRequestEntityCopyWithImpl<$Res, CreateRoomRequestEntity>;
   @useResult
   $Res call({String name, int ownerId, List<ProductEntity>? products});
 }
 
 /// @nodoc
-class _$CreateRoomRequestEntityCopyWithImpl<$Res, $Val extends CreateRoomRequestEntity>
+class _$CreateRoomRequestEntityCopyWithImpl<$Res,
+        $Val extends CreateRoomRequestEntity>
     implements $CreateRoomRequestEntityCopyWith<$Res> {
   _$CreateRoomRequestEntityCopyWithImpl(this._value, this._then);
 
@@ -76,7 +77,8 @@ class _$CreateRoomRequestEntityCopyWithImpl<$Res, $Val extends CreateRoomRequest
 abstract class _$$CreateRoomRequestEntityImplCopyWith<$Res>
     implements $CreateRoomRequestEntityCopyWith<$Res> {
   factory _$$CreateRoomRequestEntityImplCopyWith(
-          _$CreateRoomRequestEntityImpl value, $Res Function(_$CreateRoomRequestEntityImpl) then) =
+          _$CreateRoomRequestEntityImpl value,
+          $Res Function(_$CreateRoomRequestEntityImpl) then) =
       __$$CreateRoomRequestEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -85,10 +87,12 @@ abstract class _$$CreateRoomRequestEntityImplCopyWith<$Res>
 
 /// @nodoc
 class __$$CreateRoomRequestEntityImplCopyWithImpl<$Res>
-    extends _$CreateRoomRequestEntityCopyWithImpl<$Res, _$CreateRoomRequestEntityImpl>
+    extends _$CreateRoomRequestEntityCopyWithImpl<$Res,
+        _$CreateRoomRequestEntityImpl>
     implements _$$CreateRoomRequestEntityImplCopyWith<$Res> {
   __$$CreateRoomRequestEntityImplCopyWithImpl(
-      _$CreateRoomRequestEntityImpl _value, $Res Function(_$CreateRoomRequestEntityImpl) _then)
+      _$CreateRoomRequestEntityImpl _value,
+      $Res Function(_$CreateRoomRequestEntityImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CreateRoomRequestEntity
@@ -165,8 +169,9 @@ class _$CreateRoomRequestEntityImpl extends _CreateRoomRequestEntity {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreateRoomRequestEntityImplCopyWith<_$CreateRoomRequestEntityImpl> get copyWith =>
-      __$$CreateRoomRequestEntityImplCopyWithImpl<_$CreateRoomRequestEntityImpl>(this, _$identity);
+  _$$CreateRoomRequestEntityImplCopyWith<_$CreateRoomRequestEntityImpl>
+      get copyWith => __$$CreateRoomRequestEntityImplCopyWithImpl<
+          _$CreateRoomRequestEntityImpl>(this, _$identity);
 }
 
 abstract class _CreateRoomRequestEntity extends CreateRoomRequestEntity {
@@ -187,6 +192,6 @@ abstract class _CreateRoomRequestEntity extends CreateRoomRequestEntity {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CreateRoomRequestEntityImplCopyWith<_$CreateRoomRequestEntityImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CreateRoomRequestEntityImplCopyWith<_$CreateRoomRequestEntityImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -41,13 +41,14 @@ class LoginScreen extends StatelessWidget {
                   TextField(
                     onChanged: loginProvider.setEmail,
                     decoration: InputDecoration(
+                      hintText: "user@example.com",
                       labelText: "Имя",
                       labelStyle: const TextStyle(
                         color: TextUtils.grey,
                         fontSize: 14,
                       ),
                       prefixIcon: const Icon(Icons.email, color: TextUtils.grey),
-                      errorText: loginProvider.isValidEmail
+                      errorText: loginProvider.state.isValidEmail
                           ? null
                           : "Введите действительный адрес электронной почты",
                       filled: true,
@@ -57,11 +58,11 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
 
-                  // Поле ввода пароля
                   TextField(
                     onChanged: loginProvider.setPassword,
-                    obscureText: loginProvider.showPassword,
+                    obscureText: loginProvider.state.showPassword,
                     decoration: InputDecoration(
+                      hintText: "Password1!",
                       labelText: "Пароль",
                       labelStyle: const TextStyle(
                         color: TextUtils.grey,
@@ -70,14 +71,16 @@ class LoginScreen extends StatelessWidget {
                       prefixIcon: const Icon(Icons.lock, color: TextUtils.grey),
                       suffixIcon: IconButton(
                         icon: Icon(
-                          loginProvider.showPassword
+                          loginProvider.state.showPassword
                               ? Icons.visibility_off
                               : Icons.visibility,
                           color: TextUtils.grey,
                         ),
                         onPressed: loginProvider.toggleShowPassword,
                       ),
-                      errorText: loginProvider.isValidPassword ? null : "Неверный пароль",
+                      errorText: loginProvider.state.isValidPassword
+                          ? null
+                          : "Неверный пароль",
                       filled: true,
                       fillColor: const Color(0xff051326),
                       border: const OutlineInputBorder(),
@@ -85,13 +88,13 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 40),
 
-                  // Кнопка входа
                   CustomButton(
                     text: "Вход",
                     onPressed: () {
                       if (loginProvider.validateCredentials()) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Вход в систему прошел успешно!')),
+                          const SnackBar(
+                              content: Text('Вход в систему прошел успешно!')),
                         );
                         context.go('/event-rooms');
                       } else {
@@ -103,7 +106,6 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 40),
 
-                  // Регистрация
                   Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

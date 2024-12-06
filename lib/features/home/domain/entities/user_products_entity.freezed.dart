@@ -12,7 +12,7 @@ part of 'user_products_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-entity');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$UserProductsEntity {
@@ -81,8 +81,8 @@ class _$UserProductsEntityCopyWithImpl<$Res, $Val extends UserProductsEntity>
 /// @nodoc
 abstract class _$$UserProductsEntityImplCopyWith<$Res>
     implements $UserProductsEntityCopyWith<$Res> {
-  factory _$$UserProductsEntityImplCopyWith(
-          _$UserProductsEntityImpl value, $Res Function(_$UserProductsEntityImpl) then) =
+  factory _$$UserProductsEntityImplCopyWith(_$UserProductsEntityImpl value,
+          $Res Function(_$UserProductsEntityImpl) then) =
       __$$UserProductsEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -93,8 +93,8 @@ abstract class _$$UserProductsEntityImplCopyWith<$Res>
 class __$$UserProductsEntityImplCopyWithImpl<$Res>
     extends _$UserProductsEntityCopyWithImpl<$Res, _$UserProductsEntityImpl>
     implements _$$UserProductsEntityImplCopyWith<$Res> {
-  __$$UserProductsEntityImplCopyWithImpl(
-      _$UserProductsEntityImpl _value, $Res Function(_$UserProductsEntityImpl) _then)
+  __$$UserProductsEntityImplCopyWithImpl(_$UserProductsEntityImpl _value,
+      $Res Function(_$UserProductsEntityImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of UserProductsEntity
@@ -132,7 +132,10 @@ class __$$UserProductsEntityImplCopyWithImpl<$Res>
 
 class _$UserProductsEntityImpl extends _UserProductsEntity {
   const _$UserProductsEntityImpl(
-      {required this.id, required this.status, required this.productId, required this.userId})
+      {required this.id,
+      required this.status,
+      required this.productId,
+      required this.userId})
       : super._();
 
   @override
@@ -156,7 +159,8 @@ class _$UserProductsEntityImpl extends _UserProductsEntity {
             other is _$UserProductsEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.productId, productId) || other.productId == productId) &&
+            (identical(other.productId, productId) ||
+                other.productId == productId) &&
             (identical(other.userId, userId) || other.userId == userId));
   }
 
@@ -169,7 +173,8 @@ class _$UserProductsEntityImpl extends _UserProductsEntity {
   @override
   @pragma('vm:prefer-inline')
   _$$UserProductsEntityImplCopyWith<_$UserProductsEntityImpl> get copyWith =>
-      __$$UserProductsEntityImplCopyWithImpl<_$UserProductsEntityImpl>(this, _$identity);
+      __$$UserProductsEntityImplCopyWithImpl<_$UserProductsEntityImpl>(
+          this, _$identity);
 }
 
 abstract class _UserProductsEntity extends UserProductsEntity {

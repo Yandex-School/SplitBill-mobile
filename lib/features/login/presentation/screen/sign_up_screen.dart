@@ -13,8 +13,6 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final fullNameController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
   bool isPasswordMatch = true;
@@ -23,8 +21,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void initState() {
     super.initState();
     fullNameController.text = 'Test User';
-    emailController.text = 'user@example.com';
-    passwordController.text = 'Password1!';
     confirmPasswordController.text = 'Password1!';
   }
 
@@ -53,17 +49,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children: [
                   // Заголовок
                   Text(
-                      "Создать учетную запись",
-                       style: TextUtils.headingStyle.copyWith(
-                       fontSize: 27, 
-                   ),
-                    textAlign: TextAlign.center, 
+                    "Создать учетную запись",
+                    style: TextUtils.headingStyle.copyWith(fontSize: 27),
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 40),
 
+                  // Поле полного имени
                   TextField(
                     controller: fullNameController,
-                    onChanged: (value) {},
                     decoration: const InputDecoration(
                       labelText: "Полное имя",
                       labelStyle: TextStyle(color: TextUtils.grey, fontSize: 14),
@@ -75,15 +69,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   const SizedBox(height: 20),
 
-            
+                  // Поле email
                   TextField(
-                    controller: emailController,
                     onChanged: loginProvider.setEmail,
                     decoration: InputDecoration(
+                      hintText: "user@example.com",
                       labelText: "Адрес электронной почты",
                       labelStyle: const TextStyle(color: TextUtils.grey, fontSize: 14),
                       prefixIcon: const Icon(Icons.email, color: TextUtils.grey),
-                      errorText: loginProvider.isValidEmail
+                      errorText: loginProvider.state.isValidEmail
                           ? null
                           : "Введите действительный адрес электронной почты",
                       filled: true,
@@ -93,46 +87,52 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   const SizedBox(height: 20),
 
+                  // Поле пароля
                   TextField(
-                    controller: passwordController,
                     onChanged: (value) {
                       loginProvider.setPassword(value);
                       _validatePasswords(value, confirmPasswordController.text);
                     },
-                    obscureText: loginProvider.showPassword,
+                    obscureText: loginProvider.state.showPassword,
                     decoration: InputDecoration(
+                      hintText: "Password1!",
                       labelText: "Пароль",
                       labelStyle: const TextStyle(color: TextUtils.grey, fontSize: 14),
                       prefixIcon: const Icon(Icons.lock, color: TextUtils.grey),
                       suffixIcon: IconButton(
                         icon: Icon(
-                          loginProvider.showPassword
+                          loginProvider.state.showPassword
                               ? Icons.visibility_off
                               : Icons.visibility,
                           color: TextUtils.grey,
                         ),
                         onPressed: loginProvider.toggleShowPassword,
                       ),
-                      errorText: loginProvider.isValidPassword ? null : "Неверный пароль",
+                      errorText: loginProvider.state.isValidPassword
+                          ? null
+                          : "Неверный пароль",
                       filled: true,
                       fillColor: const Color(0xff051326),
                       border: const OutlineInputBorder(),
                     ),
                   ),
                   const SizedBox(height: 20),
+
+                  // Поле подтверждения пароля
                   TextField(
                     controller: confirmPasswordController,
                     onChanged: (value) {
-                      _validatePasswords(passwordController.text, value);
+                      _validatePasswords(loginProvider.state.password, value);
                     },
-                    obscureText: loginProvider.showPassword,
+                    obscureText: loginProvider.state.showPassword,
                     decoration: InputDecoration(
+                      hintText: "Password1!",
                       labelText: "Подтвердите пароль",
                       labelStyle: const TextStyle(color: TextUtils.grey, fontSize: 14),
                       prefixIcon: const Icon(Icons.lock, color: TextUtils.grey),
                       suffixIcon: IconButton(
                         icon: Icon(
-                          loginProvider.showPassword
+                          loginProvider.state.showPassword
                               ? Icons.visibility_off
                               : Icons.visibility,
                           color: TextUtils.grey,
@@ -147,22 +147,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   const SizedBox(height: 40),
 
+                  // Кнопка регистрации
                   SizedBox(
-                    width: double.infinity, 
+                    width: double.infinity,
                     child: CustomButton(
                       text: "Зарегистрироваться",
                       onPressed: () {
-                        if (loginProvider.isValidEmail &&
-                            loginProvider.isValidPassword &&
+                        if (loginProvider.state.isValidEmail &&
+                            loginProvider.state.isValidPassword &&
                             isPasswordMatch &&
                             fullNameController.text.isNotEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Учетная запись успешно создана!')),
+                            const SnackBar(
+                              content: Text('Учетная запись успешно создана!'),
+                            ),
                           );
                           Navigator.pop(context);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Неверные входные данные!')),
+                            const SnackBar(
+                              content: Text('Неверные входные данные!'),
+                            ),
                           );
                         }
                       },

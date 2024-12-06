@@ -12,7 +12,7 @@ part of 'user_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-entity');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$UserEntity {
@@ -25,19 +25,27 @@ mixin _$UserEntity {
   /// Create a copy of UserEntity
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $UserEntityCopyWith<UserEntity> get copyWith => throw _privateConstructorUsedError;
+  $UserEntityCopyWith<UserEntity> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $UserEntityCopyWith<$Res> {
-  factory $UserEntityCopyWith(UserEntity value, $Res Function(UserEntity) then) =
+  factory $UserEntityCopyWith(
+          UserEntity value, $Res Function(UserEntity) then) =
       _$UserEntityCopyWithImpl<$Res, UserEntity>;
   @useResult
-  $Res call({int id, String userName, String fullName, String photo, String password});
+  $Res call(
+      {int id,
+      String userName,
+      String fullName,
+      String photo,
+      String password});
 }
 
 /// @nodoc
-class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity> implements $UserEntityCopyWith<$Res> {
+class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
+    implements $UserEntityCopyWith<$Res> {
   _$UserEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -82,18 +90,27 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity> implements $UserEn
 }
 
 /// @nodoc
-abstract class _$$UserEntityImplCopyWith<$Res> implements $UserEntityCopyWith<$Res> {
-  factory _$$UserEntityImplCopyWith(_$UserEntityImpl value, $Res Function(_$UserEntityImpl) then) =
+abstract class _$$UserEntityImplCopyWith<$Res>
+    implements $UserEntityCopyWith<$Res> {
+  factory _$$UserEntityImplCopyWith(
+          _$UserEntityImpl value, $Res Function(_$UserEntityImpl) then) =
       __$$UserEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String userName, String fullName, String photo, String password});
+  $Res call(
+      {int id,
+      String userName,
+      String fullName,
+      String photo,
+      String password});
 }
 
 /// @nodoc
-class __$$UserEntityImplCopyWithImpl<$Res> extends _$UserEntityCopyWithImpl<$Res, _$UserEntityImpl>
+class __$$UserEntityImplCopyWithImpl<$Res>
+    extends _$UserEntityCopyWithImpl<$Res, _$UserEntityImpl>
     implements _$$UserEntityImplCopyWith<$Res> {
-  __$$UserEntityImplCopyWithImpl(_$UserEntityImpl _value, $Res Function(_$UserEntityImpl) _then)
+  __$$UserEntityImplCopyWithImpl(
+      _$UserEntityImpl _value, $Res Function(_$UserEntityImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of UserEntity
@@ -165,14 +182,18 @@ class _$UserEntityImpl extends _UserEntity {
         (other.runtimeType == runtimeType &&
             other is _$UserEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.userName, userName) || other.userName == userName) &&
-            (identical(other.fullName, fullName) || other.fullName == fullName) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
             (identical(other.photo, photo) || other.photo == photo) &&
-            (identical(other.password, password) || other.password == password));
+            (identical(other.password, password) ||
+                other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, userName, fullName, photo, password);
+  int get hashCode =>
+      Object.hash(runtimeType, id, userName, fullName, photo, password);
 
   /// Create a copy of UserEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -207,5 +228,6 @@ abstract class _UserEntity extends UserEntity {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserEntityImplCopyWith<_$UserEntityImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$UserEntityImplCopyWith<_$UserEntityImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

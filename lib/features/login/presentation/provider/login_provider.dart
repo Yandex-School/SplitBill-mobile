@@ -1,47 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:split_bill/features/login/data/models/login_state.dart';
+
 
 class LoginProvider extends ChangeNotifier {
-   String _email = 'user@example.com'; 
-  String _password = 'Password1!'; 
-  bool _isValidEmail = true;
-  bool _isValidPassword = true;
-  bool _showPassword = true;
+  static final _emailRegExp = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#%&'*+-/=?^_{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+  static final _passwordRegExp = RegExp(
+      r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$&*~]).{8,}");
 
+  LoginState _state = LoginState.initial();
 
-  String get email => _email;
-  String get password => _password;
-  bool get isValidEmail => _isValidEmail;
-  bool get isValidPassword => _isValidPassword;
-  bool get showPassword => _showPassword;
-
+  LoginState get state => _state;
 
   void setEmail(String value) {
-    _email = value;
-    _isValidEmail = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value);
-    notifyListeners(); 
+    _state = _state.copyWith(
+      email: value,
+      isValidEmail: _emailRegExp.hasMatch(value),
+    );
+    notifyListeners();
   }
 
   void setPassword(String value) {
-    _password = value;
-    _isValidPassword = RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$&*~]).{8,}").hasMatch(value);
+    _state = _state.copyWith(
+      password: value,
+      isValidPassword: _passwordRegExp.hasMatch(value),
+    );
     notifyListeners();
   }
 
   void toggleShowPassword() {
-    _showPassword = !_showPassword;
+    _state = _state.copyWith(showPassword: !_state.showPassword);
     notifyListeners();
   }
 
   bool validateCredentials() {
-    return _isValidEmail && _isValidPassword && _email.isNotEmpty && _password.isNotEmpty;
+    return _state.isValidEmail &&
+        _state.isValidPassword &&
+        _state.email.isNotEmpty &&
+        _state.password.isNotEmpty;
   }
 
   void clearData() {
-    _email = '';
-    _password = '';
-    _isValidEmail = true;
-    _isValidPassword = true;
-    _showPassword = true;
+    _state = LoginState.initial();
     notifyListeners();
   }
 }
