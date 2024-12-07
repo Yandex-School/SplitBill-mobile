@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:split_bill/core/theme/app_colors.dart';
 import 'package:split_bill/features/event_room/presentation/widgets/list_item.dart';
-import 'package:split_bill/features/login/presentation/screen/login_screen.dart';
+import 'package:split_bill/core/theme/theme_notifier.dart'; // Импорт ThemeNotifier
 import '../../domain/controllers/list_controller.dart';
 import '../widgets/custom_speed_dial.dart';
 
@@ -12,22 +11,37 @@ class EventScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: AppColors.SCAFFOLD_BACKGROUND_COLOR,
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: AppColors.PRIMARY_COLOR,
+        backgroundColor: theme.primaryColor, 
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
         ),
         centerTitle: true,
-        title: const Text(
+        title: Text(
           "SplitBill",
           style: TextStyle(
-            color: Color(0xff051326),
             fontSize: 20,
             fontWeight: FontWeight.bold,
+            color: Colors.black, 
           ),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              theme.brightness == Brightness.dark
+                  ? Icons.light_mode
+                  : Icons.dark_mode,
+              color: theme.iconTheme.color,
+            ),
+            onPressed: () {
+              context.read<ThemeNotifier>().toggleTheme();
+            },
+          ),
+        ],
       ),
       body: Consumer<ListController>(
         builder: (context, controller, _) {

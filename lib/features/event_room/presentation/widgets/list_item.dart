@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:split_bill/core/theme/app_colors.dart';
 import '../../data/models/example_record.dart';
 
 class ListItem extends StatelessWidget {
@@ -20,13 +19,15 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return GestureDetector(
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
         child: Container(
           decoration: BoxDecoration(
-            color: AppColors.PRIMARY_COLOR,
+            color: theme.primaryColor,
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
@@ -40,24 +41,24 @@ class ListItem extends StatelessWidget {
             contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
             title: Text(
               record.title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xff051326)),
+              style: TextStyle(
+                color: Colors.black, 
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
             ),
             subtitle: Text(
               "Участники: ${record.weight}",
-              style: const TextStyle(
-                fontSize: 14,
+              style: TextStyle(
                 color: Colors.grey,
+                fontSize: 14,
               ),
             ),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.delete, color: Colors.orange),
-                  onPressed: onDelete,
-                  tooltip: "Удалить",
-                ),
-              ],
+            trailing: IconButton(
+              icon: const Icon(Icons.delete),
+              color: Colors.red, 
+              onPressed: onDelete,
+              tooltip: "Удалить",
             ),
           ),
         ),

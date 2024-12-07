@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:split_bill/core/theme/app_colors.dart';
-import 'package:split_bill/features/onboarding/presentation/screen/on_boarding_screen.dart';
 import '../../domain/controllers/list_controller.dart';
 
 class CustomSpeedDial extends StatelessWidget {
@@ -11,27 +9,28 @@ class CustomSpeedDial extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return SpeedDial(
-      animatedIcon: AnimatedIcons.add_event,
-      backgroundColor: Colors.orange,
-      foregroundColor: AppColors.SCAFFOLD_BACKGROUND_COLOR,
-      overlayColor: AppColors.SCAFFOLD_BACKGROUND_COLOR,
+    animatedIcon: AnimatedIcons.add_event,
+    backgroundColor: theme.primaryColor,
+    foregroundColor: Colors.black,
+    overlayColor: theme.scaffoldBackgroundColor,
       overlayOpacity: 0.5,
       spacing: 12,
       spaceBetweenChildren: 12,
       children: [
         SpeedDialChild(
-          child: const Icon(Icons.add, color: Color(0xff051326)),
-          backgroundColor: AppColors.PRIMARY_COLOR,
+          child: const Icon(Icons.add, color: Colors.black),
+          backgroundColor: theme.primaryColor,
           label: 'Создать счет ',
-          labelStyle: const TextStyle(fontSize: 16),
+          labelStyle: theme.textTheme.bodyLarge?.copyWith(fontSize: 16),
           onTap: () => context.read<ListController>().addNewItem(),
         ),
         SpeedDialChild(
-          child: const Icon(Icons.qr_code, color: Color(0xff051326)),
-          backgroundColor: AppColors.PRIMARY_COLOR,
+          child: const Icon(Icons.qr_code, color: Colors.black),
+          backgroundColor: theme.primaryColor,
           label: 'Присоединиться ',
-          labelStyle: const TextStyle(fontSize: 16),
+          labelStyle: theme.textTheme.bodyLarge?.copyWith(fontSize: 16),
           onTap: () {
             context.go('/event-rooms/qr-scanner');
           },

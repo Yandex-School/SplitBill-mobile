@@ -12,6 +12,8 @@ class TotalPaymentStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Stack(
       children: [
         Align(
@@ -21,17 +23,16 @@ class TotalPaymentStatus extends StatelessWidget {
             duration: const Duration(milliseconds: 300),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
-              color: const Color(0xff00d09e),
+              color: theme.colorScheme.primary,
             ),
           ),
         ),
         Align(
           alignment: Alignment.center,
           child: Text(
-            "${toPayPercent * 100} %",
-            style: const TextStyle(
-              fontSize: 14,
-              color: Colors.white,
+            "Оплачено: ${toPayPercent * 100} %",
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onPrimary,
               fontWeight: FontWeight.bold,
             ),
           ),

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:split_bill/features/event_room/data/models/example_record.dart';
 
 class MockRepository {
@@ -30,3 +29,4 @@ class MockRepository {
     _store.removeWhere((item) => item.id == id);
   }
 }
+
