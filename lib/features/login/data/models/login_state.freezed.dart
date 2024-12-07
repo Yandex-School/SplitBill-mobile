@@ -16,11 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LoginState {
-  String get email => throw _privateConstructorUsedError;
+  String get nickname => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
-  bool get isValidEmail => throw _privateConstructorUsedError;
-  bool get isValidPassword => throw _privateConstructorUsedError;
   bool get showPassword => throw _privateConstructorUsedError;
+  bool get showConfirmPassword => throw _privateConstructorUsedError;
+  bool get loading => throw _privateConstructorUsedError;
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
@@ -36,11 +36,11 @@ abstract class $LoginStateCopyWith<$Res> {
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
   $Res call(
-      {String email,
+      {String nickname,
       String password,
-      bool isValidEmail,
-      bool isValidPassword,
-      bool showPassword});
+      bool showPassword,
+      bool showConfirmPassword,
+      bool loading});
 }
 
 /// @nodoc
@@ -58,32 +58,32 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = null,
+    Object? nickname = null,
     Object? password = null,
-    Object? isValidEmail = null,
-    Object? isValidPassword = null,
     Object? showPassword = null,
+    Object? showConfirmPassword = null,
+    Object? loading = null,
   }) {
     return _then(_value.copyWith(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      nickname: null == nickname
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      isValidEmail: null == isValidEmail
-          ? _value.isValidEmail
-          : isValidEmail // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isValidPassword: null == isValidPassword
-          ? _value.isValidPassword
-          : isValidPassword // ignore: cast_nullable_to_non_nullable
-              as bool,
       showPassword: null == showPassword
           ? _value.showPassword
           : showPassword // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showConfirmPassword: null == showConfirmPassword
+          ? _value.showConfirmPassword
+          : showConfirmPassword // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -98,11 +98,11 @@ abstract class _$$LoginStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String email,
+      {String nickname,
       String password,
-      bool isValidEmail,
-      bool isValidPassword,
-      bool showPassword});
+      bool showPassword,
+      bool showConfirmPassword,
+      bool loading});
 }
 
 /// @nodoc
@@ -118,32 +118,32 @@ class __$$LoginStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = null,
+    Object? nickname = null,
     Object? password = null,
-    Object? isValidEmail = null,
-    Object? isValidPassword = null,
     Object? showPassword = null,
+    Object? showConfirmPassword = null,
+    Object? loading = null,
   }) {
     return _then(_$LoginStateImpl(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      nickname: null == nickname
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      isValidEmail: null == isValidEmail
-          ? _value.isValidEmail
-          : isValidEmail // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isValidPassword: null == isValidPassword
-          ? _value.isValidPassword
-          : isValidPassword // ignore: cast_nullable_to_non_nullable
-              as bool,
       showPassword: null == showPassword
           ? _value.showPassword
           : showPassword // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showConfirmPassword: null == showConfirmPassword
+          ? _value.showConfirmPassword
+          : showConfirmPassword // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -151,28 +151,29 @@ class __$$LoginStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoginStateImpl implements _LoginState {
+class _$LoginStateImpl extends _LoginState {
   const _$LoginStateImpl(
-      {required this.email,
+      {required this.nickname,
       required this.password,
-      required this.isValidEmail,
-      required this.isValidPassword,
-      required this.showPassword});
+      required this.showPassword,
+      required this.showConfirmPassword,
+      required this.loading})
+      : super._();
 
   @override
-  final String email;
+  final String nickname;
   @override
   final String password;
   @override
-  final bool isValidEmail;
-  @override
-  final bool isValidPassword;
-  @override
   final bool showPassword;
+  @override
+  final bool showConfirmPassword;
+  @override
+  final bool loading;
 
   @override
   String toString() {
-    return 'LoginState(email: $email, password: $password, isValidEmail: $isValidEmail, isValidPassword: $isValidPassword, showPassword: $showPassword)';
+    return 'LoginState(nickname: $nickname, password: $password, showPassword: $showPassword, showConfirmPassword: $showConfirmPassword, loading: $loading)';
   }
 
   @override
@@ -180,20 +181,20 @@ class _$LoginStateImpl implements _LoginState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoginStateImpl &&
-            (identical(other.email, email) || other.email == email) &&
+            (identical(other.nickname, nickname) ||
+                other.nickname == nickname) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.isValidEmail, isValidEmail) ||
-                other.isValidEmail == isValidEmail) &&
-            (identical(other.isValidPassword, isValidPassword) ||
-                other.isValidPassword == isValidPassword) &&
             (identical(other.showPassword, showPassword) ||
-                other.showPassword == showPassword));
+                other.showPassword == showPassword) &&
+            (identical(other.showConfirmPassword, showConfirmPassword) ||
+                other.showConfirmPassword == showConfirmPassword) &&
+            (identical(other.loading, loading) || other.loading == loading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, isValidEmail,
-      isValidPassword, showPassword);
+  int get hashCode => Object.hash(runtimeType, nickname, password, showPassword,
+      showConfirmPassword, loading);
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
@@ -204,24 +205,25 @@ class _$LoginStateImpl implements _LoginState {
       __$$LoginStateImplCopyWithImpl<_$LoginStateImpl>(this, _$identity);
 }
 
-abstract class _LoginState implements LoginState {
+abstract class _LoginState extends LoginState {
   const factory _LoginState(
-      {required final String email,
+      {required final String nickname,
       required final String password,
-      required final bool isValidEmail,
-      required final bool isValidPassword,
-      required final bool showPassword}) = _$LoginStateImpl;
+      required final bool showPassword,
+      required final bool showConfirmPassword,
+      required final bool loading}) = _$LoginStateImpl;
+  const _LoginState._() : super._();
 
   @override
-  String get email;
+  String get nickname;
   @override
   String get password;
   @override
-  bool get isValidEmail;
-  @override
-  bool get isValidPassword;
-  @override
   bool get showPassword;
+  @override
+  bool get showConfirmPassword;
+  @override
+  bool get loading;
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.

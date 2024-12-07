@@ -4,7 +4,6 @@ import 'package:split_bill/core/DI/dependencies_config.dart';
 import 'package:split_bill/core/router/app_router.dart';
 import 'package:split_bill/core/scope/provider_scope.dart';
 import 'package:split_bill/core/theme/theme_notifier.dart';
-import 'package:get_it/get_it.dart';
 import 'package:split_bill/features/login/presentation/provider/login_provider.dart';
 
 Future<void> main(List<String> args) async {
@@ -16,7 +15,7 @@ Future<void> main(List<String> args) async {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => ThemeNotifier()),
-          ChangeNotifierProvider(create: (_) => GetIt.instance<LoginProvider>()),
+          ChangeNotifierProvider(create: (_) => LoginProvider()),
         ],
         child: SplitBills(),
       ),
