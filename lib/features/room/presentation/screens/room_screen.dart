@@ -39,7 +39,7 @@ class RoomScreen extends StatelessWidget {
               const SizedBox(width: 10),
               IconButton.outlined(
                 onPressed: () {},
-                icon: Icon(Icons.notifications_none_rounded, color: Colors.black),
+                icon: const Icon(Icons.notifications_none_rounded, color: Colors.black),
               ),
               const SizedBox(width: 10),
             ],

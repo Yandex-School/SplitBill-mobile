@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:split_bill/features/event_room/data/repositories/mock_repository.dart';
-import 'package:split_bill/features/event_room/domain/controllers/list_controller.dart';
+import 'package:split_bill/core/DI/dependencies_config.dart';
+import 'package:split_bill/features/event_room/presentation/provider/event_room_provider.dart';
 import 'package:split_bill/features/login/presentation/provider/login_provider.dart';
 
 class ProviderScope extends StatelessWidget {
@@ -13,7 +13,7 @@ class ProviderScope extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => ListController(MockRepository()),
+          create: (_) => getIt<EventRoomProvider>(),
         ),
         ChangeNotifierProvider(
           create: (_) => LoginProvider(),

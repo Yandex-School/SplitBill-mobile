@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:provider/provider.dart';
 import 'package:split_bill/core/extensions/media_query_extension.dart';
+import 'package:split_bill/features/event_room/presentation/provider/event_room_provider.dart';
 import 'package:split_bill/features/qr_scanner/presentation/widgets/qr_scanner_overlay.dart';
 
 class QrScannerScreen extends StatefulWidget {
@@ -13,9 +15,11 @@ class QrScannerScreen extends StatefulWidget {
 
 class _QrScannerScreenState extends State<QrScannerScreen> {
   MobileScannerController cameraController = MobileScannerController();
+  late final EventRoomProvider eventProvider;
 
   @override
   void initState() {
+    eventProvider = context.read<EventRoomProvider>();
     cameraController.start();
     super.initState();
   }
@@ -34,6 +38,10 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
     final scanWindowHeight = scanWindowWidth;
     final left = (width - scanWindowWidth) / 2;
     final top = (height - scanWindowHeight) / 3;
+
+    eventProvider.addListener(() {
+      if (eventProvider.isJoined == true) context.go('/event-rooms/room');
+    });
 
     return Scaffold(
       body: Stack(
