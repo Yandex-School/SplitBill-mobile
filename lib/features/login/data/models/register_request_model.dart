@@ -13,7 +13,7 @@ class RegisterRequest {
     required this.username,
     required this.password,
     required this.fullName,
-    this.photoUrl,
+    this.photoUrl = '',
   });
 
   factory RegisterRequest.fromJson(Map<String, dynamic> json) => _$RegisterRequestFromJson(json);

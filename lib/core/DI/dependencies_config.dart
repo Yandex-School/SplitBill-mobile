@@ -8,6 +8,10 @@ import 'package:split_bill/features/event_room/data/repositories/event_room_repo
 import 'package:split_bill/features/event_room/domain/repository/event_room_repository.dart';
 import 'package:split_bill/features/event_room/presentation/provider/event_room_provider.dart';
 import 'package:split_bill/features/login/presentation/provider/login_provider.dart';
+import 'package:split_bill/core/http_client/http_client.dart';
+import 'package:split_bill/features/login/data/auth_datasource.dart';
+import 'package:split_bill/features/login/data/login_data_source.dart';
+import 'package:split_bill/features/login/domain/login_repository.dart';
 
 part "event_room_di.dart";
 
@@ -21,5 +25,10 @@ Future<void> setupDependencies() async {
   getIt.registerSingleton(SharedPrefsService(sharedPreferences));
   getIt.registerFactory<LoginProvider>(() => LoginProvider());
 
+  getIt.registerLazySingleton<AuthorizationRepository>(
+    () => LoginRepositoryImpl(
+      authApi: AuthorizationApi(dioClient),
+    ),
+  );
   _initEventRoom();
 }
