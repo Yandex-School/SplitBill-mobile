@@ -10,7 +10,7 @@ class RegisterDomainUseCase extends UseCase<RegisterResponseEntity, RegisterRequ
   final responseDataMapper = RegisterEntityMapper();
   final requestDataMapper = RegisterRequestMapper();
   final registerDataUseCase = RegisterUseCase();
-
+  
   @override
   Future<Either<Failure, RegisterResponseEntity>> call(RegisterRequestEntity params) async {
     final result = await registerDataUseCase(requestDataMapper.mapToDataModel(params));

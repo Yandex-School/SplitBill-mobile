@@ -1,4 +1,8 @@
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:split_bill/core/DI/dependencies_config.dart';
+import 'package:split_bill/core/local_data/shared_preferences.dart';
+import 'package:split_bill/core/utils/const.dart';
 import 'package:split_bill/features/event_room/presentation/pages/events_screen.dart';
 import 'package:split_bill/features/login/presentation/screen/login_screen.dart';
 import 'package:split_bill/features/login/presentation/screen/sign_up_screen.dart';
@@ -6,17 +10,33 @@ import 'package:split_bill/features/onboarding/presentation/screen/on_boarding_s
 import 'package:split_bill/features/qr_scanner/presentation/screen/qr_scanner_screen.dart';
 import 'package:split_bill/features/room/presentation/screens/room_screen.dart';
 import 'package:split_bill/features/scan_room/presentation/screen/scan_room.dart';
+import 'package:split_bill/features/splash_screen/presentation/pages/splash_screen.dart';
 
 class AppRouter {
-  AppRouter();
+  final SharedPrefsService sharedPrefsService;
+  AppRouter(this.sharedPrefsService);
 
   GoRouter get router => _router;
 
-  final _router = GoRouter(
+  late final _router = GoRouter(
     initialLocation: '/',
     routes: [
       GoRoute(
         path: '/',
+        builder: (context, state) => const SplashScreen(),
+        redirect: (context, state) {
+          final bool isPassedOnBoarding =
+              sharedPrefsService.getBool(Constants.PASSED_ON_BOARDING) ?? false;
+          if (isPassedOnBoarding) {
+            return '/login';
+          } else {
+            return '/on_boarding';
+          }
+        },
+        
+      ),
+      GoRoute(
+        path: '/on_boarding',
         builder: (context, state) => const ConcentricAnimationOnboarding(),
       ),
       GoRoute(
@@ -52,3 +72,4 @@ class AppRouter {
     ],
   );
 }
+//

@@ -9,7 +9,7 @@ class SharedPrefsService {
     await _sharedPreferences.setString(key, value);
   }
 
-  Future<String?> getString(String key) async {
+  String? getString(String key)  {
     return _sharedPreferences.getString(key);
   }
 
@@ -17,7 +17,7 @@ class SharedPrefsService {
     await _sharedPreferences.setBool(key, value);
   }
 
-  Future<bool?> getBool(String key) async {
+  bool? getBool(String key)  {
     return _sharedPreferences.getBool(key);
   }
 }
