@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:split_bill/features/event_room/presentation/widgets/event_drawer.dart';
 import 'package:split_bill/features/event_room/presentation/widgets/list_item.dart';
-import 'package:split_bill/core/theme/theme_notifier.dart'; // Импорт ThemeNotifier
+import 'package:split_bill/features/event_room/presentation/widgets/custom_speed_dial.dart';
+import 'package:split_bill/core/theme/theme_notifier.dart';
 import '../../domain/controllers/list_controller.dart';
-import '../widgets/custom_speed_dial.dart';
 
 class EventScreen extends StatelessWidget {
   const EventScreen({super.key});
@@ -15,8 +16,9 @@ class EventScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
+      drawer: const EventDrawer(), // Drawer widget moved to `event_drawer.dart`
       appBar: AppBar(
-        backgroundColor: theme.primaryColor, 
+        backgroundColor: theme.primaryColor,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
         ),
@@ -26,22 +28,9 @@ class EventScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Colors.black, 
+            color: Colors.black,
           ),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              theme.brightness == Brightness.dark
-                  ? Icons.light_mode
-                  : Icons.dark_mode,
-              color: theme.iconTheme.color,
-            ),
-            onPressed: () {
-              context.read<ThemeNotifier>().toggleTheme();
-            },
-          ),
-        ],
       ),
       body: Consumer<ListController>(
         builder: (context, controller, _) {
