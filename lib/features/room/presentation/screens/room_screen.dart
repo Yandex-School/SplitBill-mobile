@@ -26,22 +26,15 @@ class RoomScreen extends StatelessWidget {
             expandedHeight: context.height * 0.4,
             title: Text(
               "Bobur",
-              style: theme.textTheme.titleLarge?.copyWith(color: theme.primaryTextTheme.titleLarge?.color),
+              style: theme.textTheme.titleLarge?.copyWith(
+                color: theme.primaryTextTheme.titleLarge?.color,
+              ),
             ),
             actions: [
-              CircleAvatar(
-                backgroundColor: theme.brightness == Brightness.dark ? Colors.black : Colors.white,
-                child: Icon(
-                  Icons.person,
-                  color: theme.brightness == Brightness.dark ? Colors.white : Colors.black,
-                ),
-              ),
-              const SizedBox(width: 10),
               IconButton.outlined(
                 onPressed: () {},
-                icon: Icon(Icons.notifications_none_rounded, color: Colors.black),
+                icon: const Icon(Icons.notifications_none_rounded, color: Colors.black),
               ),
-              const SizedBox(width: 10),
             ],
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
@@ -51,38 +44,59 @@ class RoomScreen extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               background: Align(
                 alignment: Alignment.bottomCenter,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SizedBox(
-                      width: 150,
-                      height: 150,
-                      child: PieChart(
-                        PieChartData(
-                          sections: [
-                            PieChartSectionData(),
-                            PieChartSectionData(),
-                            PieChartSectionData(),
-                            PieChartSectionData(),
-                            PieChartSectionData(),
-                          ],
-                        ),
-                      ),
+                child: SizedBox(
+                  width: 150,
+                  height: 150,
+                  child: PieChart(
+                    PieChartData(
+                      pieTouchData: PieTouchData(),
+                      sections: [
+                        PieChartSectionData(),
+                        PieChartSectionData(),
+                        PieChartSectionData(),
+                        PieChartSectionData(),
+                        PieChartSectionData(),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.all(AppDimens.PADDING_16),
-              child: Text(
-                "Статус оплаты",
-                style: theme.textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: theme.textTheme.titleLarge?.color ?? Colors.black,
-                ),
+              padding: const EdgeInsets.all(AppDimens.PADDING_16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      context.go('/event-rooms/room/sqlite-screen'); // Navigate to SQLiteScreen
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: theme.primaryColor,
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
+                      ),
+                    ),
+                    child: const Text(
+                      "Общий счет",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    "Статус оплаты",
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.textTheme.titleLarge?.color ?? Colors.black,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -95,16 +109,11 @@ class RoomScreen extends StatelessWidget {
                 color: theme.cardColor,
                 borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
               ),
-              child: const TotalPaymentStatus(
-                toPayPercent: 0.6,
-              ),
+              child: const TotalPaymentStatus(toPayPercent: 0.6),
             ),
           ),
           const SliverGap(10),
-          const PaymentInfoStatusWidget(
-            paid: 540,
-            toPay: 140,
-          ),
+          const PaymentInfoStatusWidget(paid: 540, toPay: 140),
           const SliverGap(10),
           SliverList.builder(
             itemCount: 100,
@@ -117,11 +126,10 @@ class RoomScreen extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.go('/event-rooms/scan-room/123123'),
         backgroundColor: theme.primaryColor,
-        child: Icon(Icons.qr_code_2_rounded, color: Colors.black),
+        child: const Icon(Icons.qr_code_2_rounded, color: Colors.black),
       ),
     );
   }
