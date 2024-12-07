@@ -1,4 +1,4 @@
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -6,6 +6,7 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Color startColor;
   final Color endColor;
+  final bool loading;
 
   const CustomButton({
     super.key,
@@ -13,14 +14,15 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     this.startColor = Colors.orange,
     this.endColor = Colors.yellow,
+    this.loading = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onPressed,
-      child: Container(
-        alignment: Alignment.center,
+      borderRadius: BorderRadius.circular(30),
+      onTap: loading ? null : onPressed,
+      child: Ink(
         width: 150,
         height: 60,
         decoration: BoxDecoration(
@@ -34,22 +36,24 @@ class CustomButton extends StatelessWidget {
             ),
           ],
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              text,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-                fontSize: 20,
-                letterSpacing: 1,
+        child: loading
+            ? const Center(child: CupertinoActivityIndicator())
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    text,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20,
+                      letterSpacing: 1,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  const Icon(Icons.arrow_forward, color: Colors.white),
+                ],
               ),
-            ),
-            const SizedBox(width: 10),
-            const Icon(Icons.arrow_forward, color: Colors.white),
-          ],
-        ),
       ),
     );
   }
