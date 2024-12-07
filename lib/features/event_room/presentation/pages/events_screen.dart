@@ -6,8 +6,19 @@ import 'package:split_bill/features/event_room/presentation/widgets/list_item.da
 import 'package:split_bill/core/theme/theme_notifier.dart';
 import '../widgets/custom_speed_dial.dart';
 
-class EventScreen extends StatelessWidget {
+class EventScreen extends StatefulWidget {
   const EventScreen({super.key});
+
+  @override
+  State<EventScreen> createState() => _EventScreenState();
+}
+
+class _EventScreenState extends State<EventScreen> {
+  @override
+  void initState() {
+    context.read<EventRoomProvider>().getRooms();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +60,7 @@ class EventScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return ListItem(
                 roomsData: state.roomsData?[index],
-                onTap: () => context.go('/event-rooms/room'),
+                onTap: () => context.go('/event-rooms/room/${state.roomsData?[index].id}'),
                 onAdd: () {},
                 onEdit: () => {},
                 onDelete: () => {},

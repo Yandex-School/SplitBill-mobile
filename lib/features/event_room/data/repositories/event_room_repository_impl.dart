@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 
 import 'package:split_bill/core/errors/failures.dart';
@@ -43,6 +45,7 @@ class EventRoomRepositoryImpl implements IEventRoomRepository {
 
       return Right(CreatedRoomsResponseMapper.mapper(response));
     } catch (e) {
+      log(e.toString());
       return const Left(InitFailure());
     }
   }

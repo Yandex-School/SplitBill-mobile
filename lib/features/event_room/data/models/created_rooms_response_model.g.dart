@@ -9,6 +9,10 @@ part of 'created_rooms_response_model.dart';
 CreatedRoomsResponseModel _$CreatedRoomsResponseModelFromJson(
         Map<String, dynamic> json) =>
     CreatedRoomsResponseModel(
+      (json['page'] as num).toInt(),
+      (json['limit'] as num).toInt(),
+      (json['total_count'] as num).toInt(),
+      (json['total_pages'] as num).toInt(),
       items: (json['items'] as List<dynamic>)
           .map(
               (e) => CreatedRoomsItemsModel.fromJson(e as Map<String, dynamic>))
@@ -19,6 +23,10 @@ Map<String, dynamic> _$CreatedRoomsResponseModelToJson(
         CreatedRoomsResponseModel instance) =>
     <String, dynamic>{
       'items': instance.items,
+      'page': instance.page,
+      'limit': instance.limit,
+      'total_count': instance.totalCount,
+      'total_pages': instance.totalPages,
     };
 
 CreatedRoomsItemsModel _$CreatedRoomsItemsModelFromJson(
@@ -26,7 +34,7 @@ CreatedRoomsItemsModel _$CreatedRoomsItemsModelFromJson(
     CreatedRoomsItemsModel(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
-      userId: (json['userId'] as num).toInt(),
+      userId: (json['user_id'] as num).toInt(),
     );
 
 Map<String, dynamic> _$CreatedRoomsItemsModelToJson(
@@ -34,5 +42,5 @@ Map<String, dynamic> _$CreatedRoomsItemsModelToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'userId': instance.userId,
+      'user_id': instance.userId,
     };

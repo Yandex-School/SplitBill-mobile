@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:split_bill/features/room/data/models/create_room_request_model.dart';
+import 'package:split_bill/features/event_room/data/models/create_room_request_model.dart';
+
 
 part 'create_room_request_entity.freezed.dart';
 

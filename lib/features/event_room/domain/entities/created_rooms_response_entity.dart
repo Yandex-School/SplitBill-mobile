@@ -8,6 +8,10 @@ class CreatedRoomsResponseEntity with _$CreatedRoomsResponseEntity {
 
   factory CreatedRoomsResponseEntity({
     required List<CreatedRoomsResponseItemsEntity> items,
+    required int page,
+    required int limit,
+    required int totalCount,
+    required int totalPage,
   }) = _CreatedRoomsResponseEntity;
 }
 

@@ -5,8 +5,14 @@ part 'created_rooms_response_model.g.dart';
 @JsonSerializable()
 class CreatedRoomsResponseModel {
   final List<CreatedRoomsItemsModel> items;
+  final int page;
+  final int limit;
+  @JsonKey(name: 'total_count')
+  final int totalCount;
+  @JsonKey(name: 'total_pages')
+  final int totalPages;
 
-  CreatedRoomsResponseModel({required this.items});
+  CreatedRoomsResponseModel(this.page, this.limit, this.totalCount, this.totalPages, {required this.items});
 
   factory CreatedRoomsResponseModel.fromJson(Map<String, Object?> json) => _$CreatedRoomsResponseModelFromJson(json);
 
@@ -17,6 +23,7 @@ class CreatedRoomsResponseModel {
 class CreatedRoomsItemsModel {
   final int id;
   final String name;
+  @JsonKey(name: 'user_id')
   final int userId;
 
   CreatedRoomsItemsModel({required this.id, required this.name, required this.userId});

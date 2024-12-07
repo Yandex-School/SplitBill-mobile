@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:split_bill/features/event_room/data/models/create_room_request_model.dart';
 import 'package:split_bill/features/event_room/data/models/create_room_response_model.dart';
 import 'package:split_bill/features/event_room/data/models/created_rooms_response_model.dart';
-import 'package:split_bill/features/room/data/models/create_room_request_model.dart';
 
 part 'event_room_remote_datasource.g.dart';
 
@@ -10,14 +10,14 @@ part 'event_room_remote_datasource.g.dart';
 abstract class EventRoomApi {
   factory EventRoomApi(Dio dio, {String baseUrl}) = _EventRoomApi;
 
-  @POST('/rooms')
+  @POST('/v1/rooms')
   Future<CreateRoomResponseModel> createRoom({
     @Body() required CreateRoomRequestModel loginRequest,
   });
 
-  @POST('/join/{id}')
+  @POST('/v1/join/{id}')
   Future<void> joinRoom({@Path() required String id});
 
-  @GET('/rooms/created/')
+  @GET('/v1/rooms/')
   Future<CreatedRoomsResponseModel> getRooms();
 }

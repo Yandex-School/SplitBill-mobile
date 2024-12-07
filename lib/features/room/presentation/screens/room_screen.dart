@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -9,12 +11,21 @@ import 'package:split_bill/features/room/presentation/widgets/guest_item.dart';
 import 'package:split_bill/features/room/presentation/widgets/payment_info_status_widget.dart';
 import '../widgets/to_pay_status_widget.dart';
 
-class RoomScreen extends StatelessWidget {
-  const RoomScreen({super.key});
+class RoomScreen extends StatefulWidget {
+  final String? roomId;
 
+  const RoomScreen({super.key, required this.roomId});
+
+  @override
+  State<RoomScreen> createState() => _RoomScreenState();
+}
+
+class _RoomScreenState extends State<RoomScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
+    log(widget.roomId.toString());
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
@@ -76,7 +87,7 @@ class RoomScreen extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.all(AppDimens.PADDING_16),
+              padding: const EdgeInsets.all(AppDimens.PADDING_16),
               child: Text(
                 "Статус оплаты",
                 style: theme.textTheme.titleLarge?.copyWith(
@@ -119,7 +130,7 @@ class RoomScreen extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.go('/event-rooms/scan-room/123123'),
+        onPressed: () => context.go('/event-rooms/room/${widget.roomId}/scan-room/123123'),
         backgroundColor: theme.primaryColor,
         child: Icon(Icons.qr_code_2_rounded, color: Colors.black),
       ),

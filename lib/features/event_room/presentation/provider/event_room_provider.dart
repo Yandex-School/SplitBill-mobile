@@ -16,7 +16,10 @@ class EventRoomProvider extends ChangeNotifier {
 
   EventRoomProvider({required this.eventRoomRepository});
 
-  void createRoom(String name) async {
+  void createRoom(
+    String name,
+    Function(int? roomId)? onSuccess,
+  ) async {
     final response = await eventRoomRepository.createRoom(CreateRoomRequestEntity(name: name));
 
     response.fold((error) {
@@ -24,6 +27,9 @@ class EventRoomProvider extends ChangeNotifier {
       notifyListeners();
     }, (data) {
       roomResponse = data;
+      if (onSuccess != null) {
+        onSuccess(roomResponse?.id);
+      }
       notifyListeners();
     });
   }

@@ -41,6 +41,9 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
 
     eventProvider.addListener(() {
       if (eventProvider.isJoined == true) context.go('/event-rooms/room');
+      if (eventProvider.failure != null) {
+        context.go('/events-rooms/');
+      }
     });
 
     return Scaffold(
@@ -52,7 +55,7 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
               return const QRScannerOverlay(overlayColour: Colors.black38);
             },
             onDetect: (barcodes) {
-              context.go('/room');
+              context.go('/room'); //TODO: cпросить у Аваза при скане нужно отправлять в листенер id с баркода
             },
             scanWindow: Rect.fromLTWH(left, top, scanWindowWidth, scanWindowHeight),
           ),

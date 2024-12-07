@@ -13,7 +13,7 @@ class AppRouter {
   GoRouter get router => _router;
 
   final _router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/event-rooms',
     routes: [
       GoRoute(
         path: '/',
@@ -34,15 +34,18 @@ class AppRouter {
         builder: (context, state) => const EventScreen(),
         routes: [
           GoRoute(
-            path: 'room',
-            builder: (context, state) => const RoomScreen(),
-          ),
-          GoRoute(
-            path: 'scan-room/:id',
-            builder: (context, state) => ScanRoomScreen(
-              id: state.pathParameters['id'],
-            ),
-          ),
+              path: 'room/:roomID',
+              builder: (context, state) => RoomScreen(
+                    roomId: state.pathParameters['roomID'],
+                  ),
+              routes: [
+                GoRoute(
+                  path: 'scan-room/:scanID',
+                  builder: (context, state) => ScanRoomScreen(
+                    id: state.pathParameters['scanID'],
+                  ),
+                ),
+              ]),
           GoRoute(
             path: 'qr-scanner',
             builder: (context, state) => const QrScannerScreen(),

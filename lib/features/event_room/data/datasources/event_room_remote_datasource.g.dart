@@ -38,7 +38,7 @@ class _EventRoomApi implements EventRoomApi {
     )
         .compose(
           _dio.options,
-          '/rooms',
+          '/v1/rooms',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -71,7 +71,7 @@ class _EventRoomApi implements EventRoomApi {
     )
         .compose(
           _dio.options,
-          '/join/${id}',
+          '/v1/join/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -96,7 +96,7 @@ class _EventRoomApi implements EventRoomApi {
     )
         .compose(
           _dio.options,
-          '/rooms/created/',
+          '/v1/rooms/',
           queryParameters: queryParameters,
           data: _data,
         )

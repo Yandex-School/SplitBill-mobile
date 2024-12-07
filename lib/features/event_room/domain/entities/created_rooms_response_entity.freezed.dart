@@ -18,6 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CreatedRoomsResponseEntity {
   List<CreatedRoomsResponseItemsEntity> get items =>
       throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
+  int get limit => throw _privateConstructorUsedError;
+  int get totalCount => throw _privateConstructorUsedError;
+  int get totalPage => throw _privateConstructorUsedError;
 
   /// Create a copy of CreatedRoomsResponseEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +37,12 @@ abstract class $CreatedRoomsResponseEntityCopyWith<$Res> {
       _$CreatedRoomsResponseEntityCopyWithImpl<$Res,
           CreatedRoomsResponseEntity>;
   @useResult
-  $Res call({List<CreatedRoomsResponseItemsEntity> items});
+  $Res call(
+      {List<CreatedRoomsResponseItemsEntity> items,
+      int page,
+      int limit,
+      int totalCount,
+      int totalPage});
 }
 
 /// @nodoc
@@ -53,12 +62,32 @@ class _$CreatedRoomsResponseEntityCopyWithImpl<$Res,
   @override
   $Res call({
     Object? items = null,
+    Object? page = null,
+    Object? limit = null,
+    Object? totalCount = null,
+    Object? totalPage = null,
   }) {
     return _then(_value.copyWith(
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<CreatedRoomsResponseItemsEntity>,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      limit: null == limit
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalPage: null == totalPage
+          ? _value.totalPage
+          : totalPage // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -72,7 +101,12 @@ abstract class _$$CreatedRoomsResponseEntityImplCopyWith<$Res>
       __$$CreatedRoomsResponseEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<CreatedRoomsResponseItemsEntity> items});
+  $Res call(
+      {List<CreatedRoomsResponseItemsEntity> items,
+      int page,
+      int limit,
+      int totalCount,
+      int totalPage});
 }
 
 /// @nodoc
@@ -91,12 +125,32 @@ class __$$CreatedRoomsResponseEntityImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? items = null,
+    Object? page = null,
+    Object? limit = null,
+    Object? totalCount = null,
+    Object? totalPage = null,
   }) {
     return _then(_$CreatedRoomsResponseEntityImpl(
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<CreatedRoomsResponseItemsEntity>,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      limit: null == limit
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalPage: null == totalPage
+          ? _value.totalPage
+          : totalPage // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -105,7 +159,11 @@ class __$$CreatedRoomsResponseEntityImplCopyWithImpl<$Res>
 
 class _$CreatedRoomsResponseEntityImpl extends _CreatedRoomsResponseEntity {
   _$CreatedRoomsResponseEntityImpl(
-      {required final List<CreatedRoomsResponseItemsEntity> items})
+      {required final List<CreatedRoomsResponseItemsEntity> items,
+      required this.page,
+      required this.limit,
+      required this.totalCount,
+      required this.totalPage})
       : _items = items,
         super._();
 
@@ -118,8 +176,17 @@ class _$CreatedRoomsResponseEntityImpl extends _CreatedRoomsResponseEntity {
   }
 
   @override
+  final int page;
+  @override
+  final int limit;
+  @override
+  final int totalCount;
+  @override
+  final int totalPage;
+
+  @override
   String toString() {
-    return 'CreatedRoomsResponseEntity(items: $items)';
+    return 'CreatedRoomsResponseEntity(items: $items, page: $page, limit: $limit, totalCount: $totalCount, totalPage: $totalPage)';
   }
 
   @override
@@ -127,12 +194,23 @@ class _$CreatedRoomsResponseEntityImpl extends _CreatedRoomsResponseEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreatedRoomsResponseEntityImpl &&
-            const DeepCollectionEquality().equals(other._items, _items));
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.limit, limit) || other.limit == limit) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount) &&
+            (identical(other.totalPage, totalPage) ||
+                other.totalPage == totalPage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_items));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_items),
+      page,
+      limit,
+      totalCount,
+      totalPage);
 
   /// Create a copy of CreatedRoomsResponseEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -146,12 +224,23 @@ class _$CreatedRoomsResponseEntityImpl extends _CreatedRoomsResponseEntity {
 
 abstract class _CreatedRoomsResponseEntity extends CreatedRoomsResponseEntity {
   factory _CreatedRoomsResponseEntity(
-          {required final List<CreatedRoomsResponseItemsEntity> items}) =
-      _$CreatedRoomsResponseEntityImpl;
+      {required final List<CreatedRoomsResponseItemsEntity> items,
+      required final int page,
+      required final int limit,
+      required final int totalCount,
+      required final int totalPage}) = _$CreatedRoomsResponseEntityImpl;
   _CreatedRoomsResponseEntity._() : super._();
 
   @override
   List<CreatedRoomsResponseItemsEntity> get items;
+  @override
+  int get page;
+  @override
+  int get limit;
+  @override
+  int get totalCount;
+  @override
+  int get totalPage;
 
   /// Create a copy of CreatedRoomsResponseEntity
   /// with the given fields replaced by the non-null parameter values.
