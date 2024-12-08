@@ -4,19 +4,22 @@ part 'login_state.freezed.dart';
 
 @freezed
 class LoginState with _$LoginState {
+  const LoginState._();
   const factory LoginState({
-    required String email,
+    required String nickname,
     required String password,
-    required bool isValidEmail,
-    required bool isValidPassword,
     required bool showPassword,
+    required bool showConfirmPassword,
+    required bool loading,
   }) = _LoginState;
 
   factory LoginState.initial() => const LoginState(
-        email: '',
+        nickname: '',
         password: '',
-        isValidEmail: true,
-        isValidPassword: true,
         showPassword: true,
+        showConfirmPassword: true,
+        loading: false,
       );
+
+  bool get fieldsAreValid => nickname.isNotEmpty && password.isNotEmpty;
 }

@@ -19,6 +19,7 @@ Future<void> main(List<String> args) async {
   FlutterNativeSplash.remove();
 
   runApp(
+    ProviderScope(child: SplitBills()),
     ProviderScope(
       child: MultiProvider(
         providers: [

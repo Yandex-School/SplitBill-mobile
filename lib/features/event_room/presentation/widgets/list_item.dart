@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../data/models/example_record.dart';
+import 'package:split_bill/features/event_room/domain/entities/created_rooms_response_entity.dart';
 
 class ListItem extends StatelessWidget {
-  final ExampleRecord record;
+  final CreatedRoomsResponseItemsEntity? roomsData;
   final VoidCallback onAdd;
   final VoidCallback onEdit;
   final VoidCallback onDelete;
@@ -10,7 +10,7 @@ class ListItem extends StatelessWidget {
 
   const ListItem({
     super.key,
-    required this.record,
+    this.roomsData,
     required this.onAdd,
     required this.onEdit,
     required this.onDelete,
@@ -40,22 +40,22 @@ class ListItem extends StatelessWidget {
           child: ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
             title: Text(
-              record.title,
-              style: TextStyle(
-                color: Colors.black, 
+              roomsData?.name ?? '',
+              style: const TextStyle(
+                color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),
             ),
-            subtitle: Text(
-              "Участники: ${record.weight}",
+            subtitle: const Text(
+              "Участники",
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 14,
               ),
             ),
             trailing: IconButton(
-              icon: const Icon(Icons.delete),
+              icon: const Icon(Icons.exit_to_app),
               color: Colors.red, 
               onPressed: onDelete,
               tooltip: "Удалить",
