@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:split_bill/core/theme/app_diemens.dart';
 import 'package:split_bill/features/event_room/domain/entities/created_rooms_response_entity.dart';
 
 class ListItem extends StatelessWidget {
@@ -28,7 +29,7 @@ class ListItem extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: theme.primaryColor,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(40),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.3),
@@ -56,7 +57,7 @@ class ListItem extends StatelessWidget {
             ),
             // trailing: IconButton(
             //   icon: const Icon(Icons.exit_to_app),
-            //   color: Colors.red, 
+            //   color: Colors.red,
             //   onPressed: onDelete,
             //   tooltip: "Удалить",
             // ),
