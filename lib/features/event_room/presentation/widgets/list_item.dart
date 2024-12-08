@@ -55,8 +55,8 @@ class ListItem extends StatelessWidget {
               ),
             ),
             trailing: IconButton(
-              icon: const Icon(Icons.delete),
-              color: Colors.red,
+              icon: const Icon(Icons.exit_to_app),
+              color: Colors.red, 
               onPressed: onDelete,
               tooltip: "Удалить",
             ),
