@@ -60,6 +60,7 @@ class ConcentricAnimationOnboarding extends StatelessWidget {
           }
         },
         onFinish: () {
+          getIt<SharedPrefsService>().saveBool(Constants.PASSED_ON_BOARDING, true);
           context.go('/login');
         },
         itemBuilder: (index) {
