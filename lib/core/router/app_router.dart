@@ -5,7 +5,6 @@ import 'package:split_bill/features/event_room/presentation/pages/events_screen.
 import 'package:split_bill/features/login/presentation/screen/login_screen.dart';
 import 'package:split_bill/features/login/presentation/screen/sign_up_screen.dart';
 import 'package:split_bill/features/onboarding/presentation/screen/on_boarding_screen.dart';
-import 'package:split_bill/features/product_room/%20presentation/pages/sqlite_screen.dart';
 import 'package:split_bill/features/qr_scanner/presentation/screen/qr_scanner_screen.dart';
 import 'package:split_bill/features/room/presentation/screens/room_screen.dart';
 import 'package:split_bill/features/scan_room/presentation/screen/scan_room.dart';
@@ -25,8 +24,7 @@ class AppRouter {
         path: '/',
         builder: (context, state) => const SplashScreen(),
         redirect: (context, state) {
-          final bool isPassedOnBoarding =
-              sharedPrefsService.getBool(Constants.PASSED_ON_BOARDING) ?? false;
+          final bool isPassedOnBoarding = sharedPrefsService.getBool(Constants.PASSED_ON_BOARDING) ?? false;
           final loggedIn = sharedPrefsService.getInt(Constants.USER_ID) != null;
           if (isPassedOnBoarding) {
             if (loggedIn) {
@@ -64,10 +62,6 @@ class AppRouter {
                     roomId: state.pathParameters['roomID'],
                   ),
               routes: [
-                GoRoute(
-                  path: 'sqlite-screen',
-                  builder: (context, state) => const SQLiteScreen(),
-                ),
                 GoRoute(
                   path: 'scan-room/:scanID',
                   builder: (context, state) => ScanRoomScreen(
