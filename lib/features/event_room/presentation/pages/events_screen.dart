@@ -55,7 +55,7 @@ class _EventScreenState extends State<EventScreen> {
               theme.brightness == Brightness.dark ? Icons.light_mode : Icons.dark_mode,
               color: theme.iconTheme.color,
             ),
-            onPressed: ()  {
+            onPressed: () {
               context.read<ThemeNotifier>().toggleTheme();
             },
           ),
@@ -63,19 +63,24 @@ class _EventScreenState extends State<EventScreen> {
       ),
       body: Consumer<EventRoomProvider>(
         builder: (context, state, _) {
-          return ListView.separated(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-            itemCount: state.roomsData?.length ?? 0,
-            itemBuilder: (context, index) {
-              return ListItem(
-                roomsData: state.roomsData?[index],
-                onTap: () => context.go('/event-rooms/room/${state.roomsData?[index].id}'),
-                onAdd: () {},
-                onEdit: () => {},
-                onDelete: () => {},
-              );
+          return RefreshIndicator.adaptive(
+            onRefresh: () async {
+              context.read<EventRoomProvider>().getRooms();
             },
-            separatorBuilder: (context, index) => const SizedBox(height: 12),
+            child: ListView.separated(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+              itemCount: state.roomsData?.length ?? 0,
+              itemBuilder: (context, index) {
+                return ListItem(
+                  roomsData: state.roomsData?[index],
+                  onTap: () => context.go('/event-rooms/room/${state.roomsData?[index].id}'),
+                  onAdd: () {},
+                  onEdit: () => {},
+                  onDelete: () => {},
+                );
+              },
+              separatorBuilder: (context, index) => const SizedBox(height: 12),
+            ),
           );
         },
       ),
