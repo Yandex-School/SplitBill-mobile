@@ -12,11 +12,12 @@ class EventRoomProvider extends ChangeNotifier {
   CreateRoomResponseEntity? roomResponse;
   List<CreatedRoomsResponseItemsEntity>? roomsData;
   bool? isJoined;
+  String? roomId;
   Failure? failure;
 
   EventRoomProvider({required this.eventRoomRepository});
 
-  void createRoom(
+  Future<void> createRoom(
     String name,
     Function(int? roomId)? onSuccess,
   ) async {
@@ -29,12 +30,18 @@ class EventRoomProvider extends ChangeNotifier {
       roomResponse = data;
       if (onSuccess != null) {
         onSuccess(roomResponse?.id);
+        getRooms();
       }
       notifyListeners();
     });
   }
 
-  void joinRoom(
+  void setRoomId(String? id) {
+    roomId = id;
+    notifyListeners();
+  }
+
+  Future<void> joinRoom(
     String id,
   ) async {
     final response = await eventRoomRepository.joinRoom(id);
@@ -54,7 +61,6 @@ class EventRoomProvider extends ChangeNotifier {
 
   void getRooms() async {
     final response = await eventRoomRepository.getRooms();
-
     response.fold(
       (error) {
         failure = error;

@@ -71,7 +71,7 @@ class _EventRoomApi implements EventRoomApi {
     )
         .compose(
           _dio.options,
-          '/v1/join/${id}',
+          '/v1/rooms/join/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -84,9 +84,9 @@ class _EventRoomApi implements EventRoomApi {
   }
 
   @override
-  Future<CreatedRoomsResponseModel> getRooms() async {
+  Future<CreatedRoomsResponseModel> getRooms(int int) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'limit': int};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<CreatedRoomsResponseModel>(Options(
