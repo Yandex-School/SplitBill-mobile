@@ -9,6 +9,7 @@ import 'package:split_bill/core/extensions/media_query_extension.dart';
 import 'package:split_bill/core/theme/app_diemens.dart';
 import 'package:split_bill/features/room/presentation/widgets/guest_item.dart';
 import 'package:split_bill/features/room/presentation/widgets/payment_info_status_widget.dart';
+
 import '../widgets/to_pay_status_widget.dart';
 
 class RoomScreen extends StatefulWidget {
@@ -82,7 +83,8 @@ class _RoomScreenState extends State<RoomScreen> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      context.go('/event-rooms/room/${widget.roomId}/sqlite-screen'); // Navigate to SQLiteScreen
+                      context.go(
+                          '/event-rooms/room/${widget.roomId}/sqlite-screen'); // Navigate to SQLiteScreen
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: theme.primaryColor,
