@@ -162,7 +162,6 @@ class _EventDrawerState extends State<EventDrawer> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Drawer Header
             Container(
               padding: const EdgeInsets.all(60),
               decoration: BoxDecoration(

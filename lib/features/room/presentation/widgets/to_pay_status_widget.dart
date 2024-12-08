@@ -32,7 +32,7 @@ class TotalPaymentStatus extends StatelessWidget {
           child: Text(
             "Оплачено: ${toPayPercent * 100} %",
             style: theme.textTheme.bodyMedium?.copyWith(
-              color: Colors.black,
+              color: const Color.fromARGB(255, 6, 32, 54),
               fontWeight: FontWeight.bold,
             ),
           ),

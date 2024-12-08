@@ -5,10 +5,12 @@ import 'package:split_bill/features/event_room/presentation/pages/events_screen.
 import 'package:split_bill/features/login/presentation/screen/login_screen.dart';
 import 'package:split_bill/features/login/presentation/screen/sign_up_screen.dart';
 import 'package:split_bill/features/onboarding/presentation/screen/on_boarding_screen.dart';
+import 'package:split_bill/features/product_room/presentation%20/page/tab_bar.dart';
 import 'package:split_bill/features/qr_scanner/presentation/screen/qr_scanner_screen.dart';
 import 'package:split_bill/features/room/presentation/screens/room_screen.dart';
 import 'package:split_bill/features/scan_room/presentation/screen/scan_room.dart';
 import 'package:split_bill/features/splash_screen/presentation/pages/splash_screen.dart';
+
 
 class AppRouter {
   final SharedPrefsService sharedPrefsService;
@@ -69,14 +71,31 @@ class AppRouter {
                   ),
                 ),
               ]),
+              GoRoute(
+        path: 'tabs',
+        builder: (context, state) => TabPage(
+          onThemeToggle: () {}, 
+          isDarkMode: false,    
+        ),
+        
+      ),
+      GoRoute(
+        path: 'profile',
+        builder: (context, state) => TabPage(
+          onThemeToggle: () {}, 
+          isDarkMode: false,    
+        ),
+        
+      ),
+      
           GoRoute(
             path: 'qr-scanner',
             builder: (context, state) => const QrScannerScreen(),
           ),
         ],
       ),
-      // SQLite screen route
+      
+      
     ],
   );
 }
-//

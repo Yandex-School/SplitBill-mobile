@@ -49,6 +49,7 @@ class _RoomScreenState extends State<RoomScreen> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            iconTheme: const IconThemeData(color: Colors.black),
             pinned: false,
             backgroundColor: theme.primaryColor,
             // expandedHeight: context.height * 0.4,
@@ -58,9 +59,10 @@ class _RoomScreenState extends State<RoomScreen> {
                 color: theme.primaryTextTheme.titleLarge?.color,
               ),
             ),
+
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(AppDimens.BORDER_RADIUS_20),
+                bottom: Radius.circular(AppDimens.BORDER_RADIUS_40),
               ),
             ),
           ),
@@ -72,8 +74,7 @@ class _RoomScreenState extends State<RoomScreen> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      context.go(
-                          '/event-rooms/room/${widget.roomId}/sqlite-screen'); // Navigate to SQLiteScreen
+                      context.go('/event-rooms/tabs');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: theme.primaryColor,
@@ -111,7 +112,7 @@ class _RoomScreenState extends State<RoomScreen> {
               width: context.width,
               height: context.height * 0.05,
               decoration: BoxDecoration(
-                color: theme.cardColor,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
               ),
               child: const TotalPaymentStatus(toPayPercent: 0.6),
@@ -132,8 +133,7 @@ class _RoomScreenState extends State<RoomScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () =>
-            context.go('/event-rooms/room/${widget.roomId}/scan-room/123123'),
+        onPressed: () => context.go('/event-rooms/room/${widget.roomId}/scan-room/${widget.roomId}'),
         backgroundColor: theme.primaryColor,
         child: const Icon(Icons.qr_code_2_rounded, color: Colors.black),
       ),
