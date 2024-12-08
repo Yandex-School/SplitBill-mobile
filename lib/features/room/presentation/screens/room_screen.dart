@@ -72,13 +72,16 @@ class _RoomScreenState extends State<RoomScreen> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      context.go('/event-rooms/room/${widget.roomId}/sqlite-screen'); // Navigate to SQLiteScreen
+                      context.go(
+                          '/event-rooms/room/${widget.roomId}/sqlite-screen'); // Navigate to SQLiteScreen
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: theme.primaryColor,
-                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 40),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
+                        borderRadius:
+                            BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
                       ),
                     ),
                     child: const Text(
@@ -103,7 +106,8 @@ class _RoomScreenState extends State<RoomScreen> {
           ),
           SliverToBoxAdapter(
             child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: AppDimens.PADDING_16),
+              margin:
+                  const EdgeInsets.symmetric(horizontal: AppDimens.PADDING_16),
               width: context.width,
               height: context.height * 0.05,
               decoration: BoxDecoration(
@@ -128,7 +132,8 @@ class _RoomScreenState extends State<RoomScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.go('/event-rooms/room/${widget.roomId}/scan-room/123123'),
+        onPressed: () =>
+            context.go('/event-rooms/room/${widget.roomId}/scan-room/123123'),
         backgroundColor: theme.primaryColor,
         child: const Icon(Icons.qr_code_2_rounded, color: Colors.black),
       ),

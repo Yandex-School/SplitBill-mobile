@@ -28,13 +28,8 @@ class _EventScreenState extends State<EventScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      drawer: EventDrawer(
-        onLogout: () {
-          context.read<EventRoomProvider>().logout().then((success) {
-            if (success) context.go(RoutesName.initial);
-          });
-        },
-      ), // Drawer widget moved to `event_drawer.dart`
+      drawer: const EventDrawer(),
+      // Drawer widget moved to `event_drawer.dart`
       appBar: AppBar(
         backgroundColor: theme.primaryColor,
         shape: const RoundedRectangleBorder(
@@ -49,12 +44,19 @@ class _EventScreenState extends State<EventScreen> {
             color: Colors.black,
           ),
         ),
+        iconTheme: IconThemeData(
+          color: Colors.black
+        ),
+        // leading: IconButton(
+        //     onPressed: () => Scaffold.of(context).openDrawer(),
+        //     icon: Icon(Icons.menu)),
         actions: [
           IconButton(
             icon: Icon(
-              theme.brightness == Brightness.dark ? Icons.light_mode : Icons.dark_mode,
-              color: theme.iconTheme.color,
-            ),
+                theme.brightness == Brightness.dark
+                    ? Icons.light_mode
+                    : Icons.dark_mode,
+                color: Colors.black),
             onPressed: () {
               context.read<ThemeNotifier>().toggleTheme();
             },

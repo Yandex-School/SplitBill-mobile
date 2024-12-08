@@ -19,7 +19,7 @@ class GuestItem extends StatelessWidget {
     required this.payStatus,
     this.amount,
     this.percentage,
-    this.onAssignPayment, 
+    this.onAssignPayment,
   });
 
   @override
@@ -44,7 +44,8 @@ class GuestItem extends StatelessWidget {
             children: [
               CircleAvatar(
                 backgroundColor: theme.primaryColor,
-                foregroundImage: AssetImage('assets/png/person-${randomizeImage()}.png'),
+                foregroundImage:
+                    AssetImage('assets/png/person-${randomizeImage()}.png'),
               ),
               const Gap(10),
               Column(
@@ -64,14 +65,17 @@ class GuestItem extends StatelessWidget {
                           TextSpan(
                             text: '$percentage % ',
                             style: TextStyle(
-                              color: payStatus == PayStatus.PAID ? theme.colorScheme.secondary : theme.colorScheme.error,
+                              color: payStatus == PayStatus.PAID
+                                  ? theme.colorScheme.secondary
+                                  : theme.colorScheme.error,
                               fontSize: 14,
                             ),
                             children: [
                               TextSpan(
                                 text: payStatus.name,
                                 style: theme.textTheme.bodyMedium?.copyWith(
-                                  color: theme.textTheme.bodyMedium?.color?.withOpacity(0.6),
+                                  color: theme.textTheme.bodyMedium?.color
+                                      ?.withOpacity(0.6),
                                   fontSize: 14,
                                 ),
                               ),
@@ -82,23 +86,32 @@ class GuestItem extends StatelessWidget {
               ),
             ],
           ),
-          payStatus == PayStatus.INITAL
-              ? ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(theme.primaryColor),
-                    foregroundColor: MaterialStateProperty.all(Colors.black),
-                  ),
-                  onPressed: onAssignPayment,
-                  child: const Text('Добавить сумму'),
-                )
-              : Text(
-                  "\$ $amount",
-                  style: TextStyle(
-                    color: payStatus == PayStatus.PAID ? theme.colorScheme.secondary : theme.colorScheme.error,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end  ,
+            children: [
+              const Text(
+                "сумма к оплате ",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
                 ),
+              ),
+              payStatus == PayStatus.INITAL
+                  ? const Text('Not Paid')
+                  : Text(
+                      "$amount",
+                      style: TextStyle(
+                        color: payStatus == PayStatus.PAID
+                            ? Colors.black
+                            : theme.colorScheme.error,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+            ],
+          ),
         ],
       ),
     );
