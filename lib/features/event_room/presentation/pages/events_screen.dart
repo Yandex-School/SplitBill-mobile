@@ -55,17 +55,7 @@ class _EventScreenState extends State<EventScreen> {
             color: Colors.black,
           ),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              theme.brightness == Brightness.dark ? Icons.light_mode : Icons.dark_mode,
-              color: theme.iconTheme.color,
-            ),
-            onPressed: () {
-              context.read<ThemeNotifier>().toggleTheme();
-            },
-          ),
-        ],
+        
       ),
       body: Consumer<EventRoomProvider>(
         builder: (context, state, _) {
