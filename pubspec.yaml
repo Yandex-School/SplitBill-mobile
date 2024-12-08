@@ -66,6 +66,13 @@ flutter:
     - assets/images/1page.png
     - assets/images/2page.png
     - assets/images/3page.png
+    - assets/png/person-0.png
+    - assets/png/person-1.png
+    - assets/png/person-2.png
+    - assets/png/person-3.png
+    - assets/png/person-4.png
+    - assets/png/person-5.png
+    - assets/png/person-6.png
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

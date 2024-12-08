@@ -30,7 +30,8 @@ class _EventScreenState extends State<EventScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      drawer: const EventDrawer(), // Drawer widget moved to `event_drawer.dart`
+      drawer: const EventDrawer(),
+      // Drawer widget moved to `event_drawer.dart`
       appBar: AppBar(
         backgroundColor: theme.primaryColor,
         shape: const RoundedRectangleBorder(
@@ -45,12 +46,19 @@ class _EventScreenState extends State<EventScreen> {
             color: Colors.black,
           ),
         ),
+        iconTheme: IconThemeData(
+          color: Colors.black
+        ),
+        // leading: IconButton(
+        //     onPressed: () => Scaffold.of(context).openDrawer(),
+        //     icon: Icon(Icons.menu)),
         actions: [
           IconButton(
             icon: Icon(
-              theme.brightness == Brightness.dark ? Icons.light_mode : Icons.dark_mode,
-              color: theme.iconTheme.color,
-            ),
+                theme.brightness == Brightness.dark
+                    ? Icons.light_mode
+                    : Icons.dark_mode,
+                color: Colors.black),
             onPressed: () {
               context.read<ThemeNotifier>().toggleTheme();
             },
@@ -60,12 +68,14 @@ class _EventScreenState extends State<EventScreen> {
       body: Consumer<EventRoomProvider>(
         builder: (context, state, _) {
           return ListView.separated(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
             itemCount: state.roomsData?.length ?? 0,
             itemBuilder: (context, index) {
               return ListItem(
                 roomsData: state.roomsData?[index],
-                onTap: () => context.go('/event-rooms/room/${state.roomsData?[index].id}'),
+                onTap: () => context
+                    .go('/event-rooms/room/${state.roomsData?[index].id}'),
                 onAdd: () {},
                 onEdit: () => {},
                 onDelete: () => {},
