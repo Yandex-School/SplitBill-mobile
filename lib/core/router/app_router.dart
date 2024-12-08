@@ -14,7 +14,7 @@ class AppRouter {
   GoRouter get router => _router;
 
   final _router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/event-rooms',
     routes: [
       // Onboarding route
       GoRoute(
@@ -47,7 +47,6 @@ class AppRouter {
                   path: 'sqlite-screen',
                   builder: (context, state) => const SQLiteScreen(),
                 ),
-                
                 GoRoute(
                   path: 'scan-room/:scanID',
                   builder: (context, state) => ScanRoomScreen(

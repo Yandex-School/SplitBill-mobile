@@ -41,7 +41,7 @@ class EventRoomRepositoryImpl implements IEventRoomRepository {
   @override
   Future<Either<Failure, CreatedRoomsResponseEntity>> getRooms() async {
     try {
-      final response = await eventAPI.getRooms();
+      final response = await eventAPI.getRooms(1000);
 
       return Right(CreatedRoomsResponseMapper.mapper(response));
     } catch (e) {
