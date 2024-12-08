@@ -6,9 +6,7 @@ import 'package:split_bill/features/event_room/presentation/widgets/list_item.da
 import 'package:split_bill/features/event_room/presentation/widgets/custom_speed_dial.dart';
 import 'package:split_bill/core/theme/theme_notifier.dart';
 import 'package:split_bill/features/event_room/presentation/provider/event_room_provider.dart';
-import 'package:split_bill/features/event_room/presentation/widgets/list_item.dart';
-import 'package:split_bill/core/theme/theme_notifier.dart';
-import '../widgets/custom_speed_dial.dart';
+
 
 class EventScreen extends StatefulWidget {
   const EventScreen({super.key});
