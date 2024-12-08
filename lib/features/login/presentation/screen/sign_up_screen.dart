@@ -57,13 +57,16 @@ class SignUpScreen extends StatelessWidget {
 
                       // Поле пароля
                       TextField(
-                        onChanged: (value) => loginProvider.setRegisterState(password: value),
-                        style: const TextStyle(color: Colors.white),
+                        onChanged: (value) => loginProvider.setLoginState(password: value),
                         obscureText: loginProvider.loginState.showPassword,
+                        style: const TextStyle(color: Colors.white),
                         decoration: InputDecoration(
-                          hintText: "Password1!",
+                          hintText: "Password",
                           labelText: "Пароль",
-                          labelStyle: const TextStyle(color: TextUtils.grey, fontSize: 14),
+                          labelStyle: const TextStyle(
+                            color: TextUtils.grey,
+                            fontSize: 14,
+                          ),
                           prefixIcon: const Icon(Icons.lock, color: TextUtils.grey),
                           suffixIcon: IconButton(
                             icon: Icon(
@@ -72,7 +75,7 @@ class SignUpScreen extends StatelessWidget {
                                   : Icons.visibility,
                               color: TextUtils.grey,
                             ),
-                            onPressed: () => loginProvider.setRegisterState(
+                            onPressed: () => loginProvider.setLoginState(
                               showPassword: !loginProvider.loginState.showPassword,
                             ),
                           ),
@@ -101,7 +104,7 @@ class SignUpScreen extends StatelessWidget {
                                   : Icons.visibility,
                               color: TextUtils.grey,
                             ),
-                            onPressed: () => loginProvider.setRegisterState(
+                            onPressed: () => loginProvider.setLoginState(
                               showPassword: !loginProvider.loginState.showPassword,
                             ),
                           ),

@@ -14,7 +14,7 @@ class AppRouter {
   GoRouter get router => _router;
 
   final _router = GoRouter(
-    initialLocation: '/login', // Starting screen of your app
+    initialLocation: '/login', 
     routes: [
       // Onboarding route
       GoRoute(
@@ -50,7 +50,7 @@ class AppRouter {
           GoRoute(
             path: 'scan-room/:id',
             builder: (context, state) => ScanRoomScreen(
-              id: state.pathParameters['id'], // Retrieve dynamic parameter
+              id: state.pathParameters['id'], 
             ),
           ),
           GoRoute(
@@ -59,7 +59,7 @@ class AppRouter {
           ),
         ],
       ),
-      // SQLite screen route
+    
     ],
   );
 }

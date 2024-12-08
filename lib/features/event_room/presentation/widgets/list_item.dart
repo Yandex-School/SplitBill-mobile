@@ -54,12 +54,12 @@ class ListItem extends StatelessWidget {
                 fontSize: 14,
               ),
             ),
-            trailing: IconButton(
-              icon: const Icon(Icons.exit_to_app),
-              color: Colors.red, 
-              onPressed: onDelete,
-              tooltip: "Удалить",
-            ),
+            // trailing: IconButton(
+            //   icon: const Icon(Icons.exit_to_app),
+            //   color: Colors.red, 
+            //   onPressed: onDelete,
+            //   tooltip: "Удалить",
+            // ),
           ),
         ),
       ),
