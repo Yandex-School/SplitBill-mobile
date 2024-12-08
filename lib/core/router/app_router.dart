@@ -1,6 +1,4 @@
 import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:split_bill/core/DI/dependencies_config.dart';
 import 'package:split_bill/core/local_data/shared_preferences.dart';
 import 'package:split_bill/core/utils/const.dart';
 import 'package:split_bill/features/event_room/presentation/pages/events_screen.dart';
@@ -29,13 +27,16 @@ class AppRouter {
         redirect: (context, state) {
           final bool isPassedOnBoarding =
               sharedPrefsService.getBool(Constants.PASSED_ON_BOARDING) ?? false;
+          final loggedIn = sharedPrefsService.getInt(Constants.USER_ID) != null;
           if (isPassedOnBoarding) {
+            if (loggedIn) {
+              return '/event-rooms';
+            }
             return '/login';
           } else {
             return '/on_boarding';
           }
         },
-        
       ),
       GoRoute(
         path: '/on_boarding',
@@ -67,7 +68,6 @@ class AppRouter {
                   path: 'sqlite-screen',
                   builder: (context, state) => const SQLiteScreen(),
                 ),
-                
                 GoRoute(
                   path: 'scan-room/:scanID',
                   builder: (context, state) => ScanRoomScreen(

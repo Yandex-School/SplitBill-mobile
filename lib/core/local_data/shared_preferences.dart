@@ -17,13 +17,8 @@ class SharedPrefsService {
     await _sharedPreferences.setBool(key, value);
   }
 
-  bool? getBool(String key) {
   Future<void> saveInt(String key, int value) async {
     await _sharedPreferences.setInt(key, value);
-  }
-
-  String? getString(String key) {
-    return _sharedPreferences.getString(key);
   }
 
   bool? getBool(String key) {
