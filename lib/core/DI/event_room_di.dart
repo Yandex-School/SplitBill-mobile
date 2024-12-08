@@ -15,4 +15,11 @@ void _initEventRoom() async {
       sharedPrefsService: getIt(),
     ),
   );
+  getIt.registerLazySingleton<IRoomRepository>(
+    () => RoomRepositoryImpl(roomApi: RoomApi(getIt<Dio>())),
+  );
+  getIt.registerFactory(
+    () => RoomProvider(repository: getIt<IRoomRepository>()),
+  );
+  getIt.registerFactory(() => RoomProductsProvider());
 }
