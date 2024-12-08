@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:provider/provider.dart';
 import 'package:split_bill/core/extensions/media_query_extension.dart';
+import 'package:split_bill/features/event_room/presentation/provider/event_room_provider.dart';
 import 'package:split_bill/features/qr_scanner/presentation/widgets/qr_scanner_overlay.dart';
 
 class QrScannerScreen extends StatefulWidget {
@@ -12,16 +16,32 @@ class QrScannerScreen extends StatefulWidget {
 }
 
 class _QrScannerScreenState extends State<QrScannerScreen> {
-  MobileScannerController cameraController = MobileScannerController();
+  MobileScannerController cameraController = MobileScannerController(
+    detectionSpeed: DetectionSpeed.noDuplicates,
+    detectionTimeoutMs: 1000,
+  );
+  late final EventRoomProvider eventProvider;
 
   @override
   void initState() {
+    eventProvider = context.read<EventRoomProvider>();
     cameraController.start();
+    eventProvider.addListener(_initListener);
     super.initState();
+  }
+
+  void _initListener() {
+    if (eventProvider.roomId != null) {
+      eventProvider.joinRoom(eventProvider.roomId!);
+    }
+    if (eventProvider.isJoined != null && eventProvider.isJoined == true) {
+      context.go('/event-rooms/room/${eventProvider.roomId}');
+    }
   }
 
   @override
   void dispose() {
+    eventProvider.removeListener(_initListener);
     cameraController.stop();
     super.dispose();
   }
@@ -43,8 +63,9 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
             overlayBuilder: (context, constraints) {
               return const QRScannerOverlay(overlayColour: Colors.black38);
             },
-            onDetect: (barcodes) {
-              context.go('/room');
+            onDetect: (barcode) {
+              eventProvider.setRoomId(barcode.barcodes.first.displayValue);
+              // log(barcode.barcodes.first.displayValue.toString());
             },
             scanWindow: Rect.fromLTWH(left, top, scanWindowWidth, scanWindowHeight),
           ),
