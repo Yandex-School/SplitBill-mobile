@@ -56,10 +56,10 @@ class ConcentricAnimationOnboarding extends StatelessWidget {
         onChange: (page) {
           if (page == pages.length) {
             context.go('/login');
-            getIt<SharedPrefsService>().saveBool(Constants.PASSED_ON_BOARDING, true);
           }
         },
         onFinish: () {
+          getIt<SharedPrefsService>().saveBool(Constants.PASSED_ON_BOARDING, true);
           context.go('/login');
         },
         itemBuilder: (index) {
