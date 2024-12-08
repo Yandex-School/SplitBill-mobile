@@ -15,9 +15,9 @@ abstract class EventRoomApi {
     @Body() required CreateRoomRequestModel loginRequest,
   });
 
-  @POST('/v1/join/{id}')
+  @POST('/v1/rooms/join/{id}')
   Future<void> joinRoom({@Path() required String id});
 
   @GET('/v1/rooms/')
-  Future<CreatedRoomsResponseModel> getRooms();
+  Future<CreatedRoomsResponseModel> getRooms(@Query('limit') int int);
 }

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:split_bill/features/event_room/presentation/widgets/event_drawer.dart';
-import 'package:split_bill/features/event_room/presentation/widgets/list_item.dart';
-import 'package:split_bill/features/event_room/presentation/widgets/custom_speed_dial.dart';
+import 'package:split_bill/core/router/routes_name.dart';
 import 'package:split_bill/core/theme/theme_notifier.dart';
 import 'package:split_bill/features/event_room/presentation/provider/event_room_provider.dart';
+import 'package:split_bill/features/event_room/presentation/widgets/custom_speed_dial.dart';
+import 'package:split_bill/features/event_room/presentation/widgets/event_drawer.dart';
 import 'package:split_bill/features/event_room/presentation/widgets/list_item.dart';
-import 'package:split_bill/core/theme/theme_notifier.dart';
-import '../widgets/custom_speed_dial.dart';
 
 class EventScreen extends StatefulWidget {
   const EventScreen({super.key});
@@ -30,7 +28,13 @@ class _EventScreenState extends State<EventScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      drawer: const EventDrawer(), // Drawer widget moved to `event_drawer.dart`
+      drawer: EventDrawer(
+        onLogout: () {
+          context.read<EventRoomProvider>().logout().then((success) {
+            if (success) context.go(RoutesName.initial);
+          });
+        },
+      ), // Drawer widget moved to `event_drawer.dart`
       appBar: AppBar(
         backgroundColor: theme.primaryColor,
         shape: const RoundedRectangleBorder(

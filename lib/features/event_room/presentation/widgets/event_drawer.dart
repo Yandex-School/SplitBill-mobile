@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:split_bill/core/theme/theme_notifier.dart';
 
 class EventDrawer extends StatelessWidget {
-  const EventDrawer({Key? key}) : super(key: key);
+  final VoidCallback? onLogout;
+
+  const EventDrawer({
+    Key? key,
+    this.onLogout,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +17,6 @@ class EventDrawer extends StatelessWidget {
     return Drawer(
       child: SingleChildScrollView(
         child: Column(
-         
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Drawer Header
@@ -43,9 +46,7 @@ class EventDrawer extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: theme.brightness == Brightness.dark
-                          ? Colors.black
-                          : Colors.black,
+                      color: theme.brightness == Brightness.dark ? Colors.black : Colors.black,
                     ),
                   ),
                   const SizedBox(height: 5),
@@ -53,9 +54,8 @@ class EventDrawer extends StatelessWidget {
                     'user@example.com',
                     style: TextStyle(
                       fontSize: 14,
-                      color: theme.brightness == Brightness.dark
-                          ? Colors.grey[700]
-                          : Colors.grey[700],
+                      color:
+                          theme.brightness == Brightness.dark ? Colors.grey[700] : Colors.grey[700],
                     ),
                   ),
                 ],
@@ -70,8 +70,7 @@ class EventDrawer extends StatelessWidget {
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: theme.primaryColor,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -80,21 +79,13 @@ class EventDrawer extends StatelessWidget {
                   context.read<ThemeNotifier>().toggleTheme();
                 },
                 icon: Icon(
-                  theme.brightness == Brightness.dark
-                      ? Icons.light_mode
-                      : Icons.dark_mode,
-                  color: theme.brightness == Brightness.dark
-                      ? Colors.black
-                      : Colors.black,
+                  theme.brightness == Brightness.dark ? Icons.light_mode : Icons.dark_mode,
+                  color: theme.brightness == Brightness.dark ? Colors.black : Colors.black,
                 ),
                 label: Text(
-                  theme.brightness == Brightness.dark
-                      ? 'Light Theme'
-                      : 'Dark Theme',
+                  theme.brightness == Brightness.dark ? 'Light Theme' : 'Dark Theme',
                   style: TextStyle(
-                    color: theme.brightness == Brightness.dark
-                        ? Colors.black
-                        : Colors.black,
+                    color: theme.brightness == Brightness.dark ? Colors.black : Colors.black,
                   ),
                 ),
               ),
@@ -106,15 +97,13 @@ class EventDrawer extends StatelessWidget {
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
                 onPressed: () {
-                  // Use GoRouter to navigate to login
-                  context.go('/login');
+                  onLogout?.call();
                 },
                 icon: const Icon(
                   Icons.logout,
