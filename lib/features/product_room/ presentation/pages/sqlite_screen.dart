@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:split_bill/core/router/app_router.dart';
 import 'package:split_bill/core/theme/theme_notifier.dart';
-import 'package:split_bill/features/event_room/presentation/pages/events_screen.dart';
 import 'package:split_bill/features/product_room/data/repositories/item_repository_impl.dart';
 import 'package:split_bill/features/product_room/domain/entities/item.dart';
 import 'package:split_bill/features/product_room/domain/usecases/add_item.dart';
@@ -11,8 +9,9 @@ import 'package:split_bill/features/product_room/domain/usecases/delete_item.dar
 import 'package:split_bill/features/product_room/domain/usecases/get_items.dart';
 import 'package:split_bill/features/product_room/domain/usecases/update_item.dart';
 import 'package:split_bill/features/product_room/utils/daatbase_helper.dart';
-import '../widgets/input_field.dart';
+
 import '../widgets/action_button.dart';
+import '../widgets/input_field.dart';
 import '../widgets/item_card.dart';
 
 class SQLiteScreen extends StatefulWidget {
@@ -109,7 +108,6 @@ class _SQLiteScreenState extends State<SQLiteScreen> {
 
     return Scaffold(
       appBar: AppBar(
-       
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
