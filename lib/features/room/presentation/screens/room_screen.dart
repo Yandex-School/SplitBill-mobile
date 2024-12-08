@@ -4,9 +4,12 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:split_bill/core/enums/enums.dart';
 import 'package:split_bill/core/extensions/media_query_extension.dart';
+import 'package:split_bill/core/scope/provider_scope.dart';
 import 'package:split_bill/core/theme/app_diemens.dart';
+import 'package:split_bill/features/event_room/presentation/provider/event_room_provider.dart';
 import 'package:split_bill/features/room/presentation/widgets/guest_item.dart';
 import 'package:split_bill/features/room/presentation/widgets/payment_info_status_widget.dart';
 import '../widgets/to_pay_status_widget.dart';
@@ -21,6 +24,20 @@ class RoomScreen extends StatefulWidget {
 }
 
 class _RoomScreenState extends State<RoomScreen> {
+  late final EventRoomProvider eventRoomProvider;
+
+  @override
+  void initState() {
+    eventRoomProvider = context.read<EventRoomProvider>();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    eventRoomProvider.closeRoom();
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -41,31 +58,9 @@ class _RoomScreenState extends State<RoomScreen> {
                 color: theme.primaryTextTheme.titleLarge?.color,
               ),
             ),
-            
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(AppDimens.BORDER_RADIUS_20),
-              ),
-            ),
-            flexibleSpace: FlexibleSpaceBar(
-              background: Align(
-                alignment: Alignment.bottomCenter,
-                child: SizedBox(
-                  width: 150,
-                  height: 150,
-                  // child: PieChart(
-                  //   PieChartData(
-                  //     pieTouchData: PieTouchData(),
-                  //     sections: [
-                  //       PieChartSectionData(),
-                  //       PieChartSectionData(),
-                  //       PieChartSectionData(),
-                  //       PieChartSectionData(),
-                  //       PieChartSectionData(),
-                  //     ],
-                  //   ),
-                  // ),
-                ),
               ),
             ),
           ),
