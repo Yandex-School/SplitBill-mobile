@@ -12,11 +12,13 @@ import 'package:split_bill/features/scan_room/presentation/screen/scan_room.dart
 import 'package:split_bill/features/splash_screen/presentation/pages/splash_screen.dart';
 
 class AppRouter {
-  AppRouter();
+  final SharedPrefsService sharedPrefsService;
+
+  AppRouter(this.sharedPrefsService);
 
   GoRouter get router => _router;
 
-  final _router = GoRouter(
+  late final _router = GoRouter(
     initialLocation: '/',
     routes: [
       // Onboarding route
