@@ -1,21 +1,36 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:split_bill/core/errors/failures.dart';
+import 'package:split_bill/core/local_data/shared_preferences.dart';
+import 'package:split_bill/core/utils/const.dart';
 import 'package:split_bill/features/event_room/domain/entities/create_room_request_entity.dart';
 import 'package:split_bill/features/event_room/domain/entities/create_room_response_entity.dart';
 import 'package:split_bill/features/event_room/domain/entities/created_rooms_response_entity.dart';
-
 import 'package:split_bill/features/event_room/domain/repository/event_room_repository.dart';
 
 class EventRoomProvider extends ChangeNotifier {
   final IEventRoomRepository eventRoomRepository;
+  final SharedPrefsService sharedPrefsService;
   CreateRoomResponseEntity? roomResponse;
   List<CreatedRoomsResponseItemsEntity>? roomsData;
   bool? isJoined;
   String? roomId;
   Failure? failure;
 
-  EventRoomProvider({required this.eventRoomRepository});
+  EventRoomProvider({
+    required this.eventRoomRepository,
+    required this.sharedPrefsService,
+  });
+
+  Future<bool> logout() async {
+    try {
+      await sharedPrefsService.delete(Constants.USER_ID);
+      return true;
+    } on Object catch (e) {
+      print(e);
+      return false;
+    }
+  }
 
   Future<void> createRoom(
     String name,
