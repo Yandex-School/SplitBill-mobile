@@ -10,9 +10,9 @@ import 'package:split_bill/features/scan_room/presentation/screen/scan_room.dart
 
 class AppRouter {
   AppRouter();
-
+  
   GoRouter get router => _router;
-
+  
   final _router = GoRouter(
     initialLocation: '/',
     routes: [
