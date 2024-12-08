@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:split_bill/core/router/routes_name.dart';
 import 'package:split_bill/core/utils/text_utils.dart';
@@ -14,11 +15,11 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xff051326),
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xff051326),
-        elevation: 0.0,
-      ),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   backgroundColor: const Color(0xff051326),
+      //   elevation: 0.0,
+      // ),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -29,6 +30,15 @@ class LoginScreen extends StatelessWidget {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Transform.translate(
+                        offset: const Offset(
+                            0, -50), // Move the widget upwards by 50 pixels
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 300,
+                          child: Lottie.asset('assets/lottie/coin_lottie.json'),
+                        ),
+                      ),
                       const Text(
                         "Вход",
                         style: TextUtils.headingStyle,
@@ -41,7 +51,8 @@ class LoginScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 40),
                       TextField(
-                        onChanged: (value) => loginProvider.setLoginState(nickname: value),
+                        onChanged: (value) =>
+                            loginProvider.setLoginState(nickname: value),
                         style: const TextStyle(color: Colors.white),
                         decoration: const InputDecoration(
                           hintText: "user",
@@ -50,7 +61,8 @@ class LoginScreen extends StatelessWidget {
                             color: TextUtils.grey,
                             fontSize: 14,
                           ),
-                          prefixIcon: Icon(Icons.account_box_outlined, color: TextUtils.grey),
+                          prefixIcon: Icon(Icons.account_box_outlined,
+                              color: TextUtils.grey),
                           filled: true,
                           fillColor: Color(0xff051326),
                           border: OutlineInputBorder(),
@@ -58,7 +70,8 @@ class LoginScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 20),
                       TextField(
-                        onChanged: (value) => loginProvider.setLoginState(password: value),
+                        onChanged: (value) =>
+                            loginProvider.setLoginState(password: value),
                         obscureText: loginProvider.loginState.showPassword,
                         style: const TextStyle(color: Colors.white),
                         decoration: InputDecoration(
@@ -68,7 +81,8 @@ class LoginScreen extends StatelessWidget {
                             color: TextUtils.grey,
                             fontSize: 14,
                           ),
-                          prefixIcon: const Icon(Icons.lock, color: TextUtils.grey),
+                          prefixIcon:
+                              const Icon(Icons.lock, color: TextUtils.grey),
                           suffixIcon: IconButton(
                             icon: Icon(
                               loginProvider.loginState.showPassword
@@ -77,7 +91,8 @@ class LoginScreen extends StatelessWidget {
                               color: TextUtils.grey,
                             ),
                             onPressed: () => loginProvider.setLoginState(
-                              showPassword: !loginProvider.loginState.showPassword,
+                              showPassword:
+                                  !loginProvider.loginState.showPassword,
                             ),
                           ),
                           filled: true,
@@ -123,7 +138,8 @@ class LoginScreen extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                                 recognizer: TapGestureRecognizer()
-                                  ..onTap = () => context.go(RoutesName.register),
+                                  ..onTap =
+                                      () => context.go(RoutesName.register),
                               ),
                             ],
                           ),

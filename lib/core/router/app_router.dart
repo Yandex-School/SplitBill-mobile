@@ -13,6 +13,7 @@ import 'package:split_bill/features/splash_screen/presentation/pages/splash_scre
 
 class AppRouter {
   final SharedPrefsService sharedPrefsService;
+
   AppRouter(this.sharedPrefsService);
 
   GoRouter get router => _router;
