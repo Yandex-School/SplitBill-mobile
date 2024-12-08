@@ -14,7 +14,7 @@ class AppRouter {
   GoRouter get router => _router;
 
   final _router = GoRouter(
-    initialLocation: '/login', // Starting screen of your app
+    initialLocation: '/',
     routes: [
       // Onboarding route
       GoRoute(
@@ -38,21 +38,23 @@ class AppRouter {
         builder: (context, state) => const EventScreen(),
         routes: [
           GoRoute(
-            path: 'room',
-            builder: (context, state) => const RoomScreen(),
-            routes: [
-              GoRoute(
-                path: 'sqlite-screen',
-                builder: (context, state) => const SQLiteScreen(),
-              ),
-            ],
-          ),
-          GoRoute(
-            path: 'scan-room/:id',
-            builder: (context, state) => ScanRoomScreen(
-              id: state.pathParameters['id'], // Retrieve dynamic parameter
-            ),
-          ),
+              path: 'room/:roomID',
+              builder: (context, state) => RoomScreen(
+                    roomId: state.pathParameters['roomID'],
+                  ),
+              routes: [
+                GoRoute(
+                  path: 'sqlite-screen',
+                  builder: (context, state) => const SQLiteScreen(),
+                ),
+                
+                GoRoute(
+                  path: 'scan-room/:scanID',
+                  builder: (context, state) => ScanRoomScreen(
+                    id: state.pathParameters['scanID'],
+                  ),
+                ),
+              ]),
           GoRoute(
             path: 'qr-scanner',
             builder: (context, state) => const QrScannerScreen(),
