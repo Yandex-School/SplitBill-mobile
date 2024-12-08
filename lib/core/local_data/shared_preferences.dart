@@ -28,4 +28,8 @@ class SharedPrefsService {
   int? getInt(String key) {
     return _sharedPreferences.getInt(key);
   }
+
+  Future<void> delete(String key) async {
+    await _sharedPreferences.remove(key);
+  }
 }
