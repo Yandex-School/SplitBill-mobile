@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // Основной цвет
-  static const Color primaryColor = Color(0xffe7ff73);
+static const Color primaryColor = Color(0xFFFFFF00); // Код для желтого цвета
+
 
   // Цвета для светлой темы
   static const Color lightBackground = Color(0xfff5f5f5);

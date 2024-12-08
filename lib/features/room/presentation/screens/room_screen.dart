@@ -23,19 +23,14 @@ class RoomScreen extends StatelessWidget {
           SliverAppBar(
             pinned: false,
             backgroundColor: theme.primaryColor,
-            expandedHeight: context.height * 0.4,
+            // expandedHeight: context.height * 0.4,
             title: Text(
               "Bobur",
               style: theme.textTheme.titleLarge?.copyWith(
                 color: theme.primaryTextTheme.titleLarge?.color,
               ),
             ),
-            actions: [
-              IconButton.outlined(
-                onPressed: () {},
-                icon: const Icon(Icons.notifications_none_rounded, color: Colors.black),
-              ),
-            ],
+            
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(AppDimens.BORDER_RADIUS_20),
@@ -47,18 +42,18 @@ class RoomScreen extends StatelessWidget {
                 child: SizedBox(
                   width: 150,
                   height: 150,
-                  child: PieChart(
-                    PieChartData(
-                      pieTouchData: PieTouchData(),
-                      sections: [
-                        PieChartSectionData(),
-                        PieChartSectionData(),
-                        PieChartSectionData(),
-                        PieChartSectionData(),
-                        PieChartSectionData(),
-                      ],
-                    ),
-                  ),
+                  // child: PieChart(
+                  //   PieChartData(
+                  //     pieTouchData: PieTouchData(),
+                  //     sections: [
+                  //       PieChartSectionData(),
+                  //       PieChartSectionData(),
+                  //       PieChartSectionData(),
+                  //       PieChartSectionData(),
+                  //       PieChartSectionData(),
+                  //     ],
+                  //   ),
+                  // ),
                 ),
               ),
             ),
