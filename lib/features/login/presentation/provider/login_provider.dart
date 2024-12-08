@@ -12,8 +12,7 @@ class LoginProvider extends ChangeNotifier {
   AuthorizationRepository get _authRepo => getIt<AuthorizationRepository>();
   SharedPrefsService get _sharedPrefs => getIt<SharedPrefsService>();
 
-  static final _passwordRegExp =
-      RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$&*~]).{8,}");
+  static final _passwordRegExp = RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$&*~]).{8,}");
 
   LoginState _loginState = LoginState.initial();
   RegisterState _registerState = RegisterState.initial();
@@ -71,7 +70,7 @@ class LoginProvider extends ChangeNotifier {
         return false;
       },
       (r) {
-        if (r?.id != null) unawaited(_sharedPrefs.saveInt(USER_ID, r!.id));
+        if (r?.id != null) unawaited(_sharedPrefs.saveInt(Constants.USER_ID, r!.id));
         return true;
       },
     );
@@ -92,7 +91,7 @@ class LoginProvider extends ChangeNotifier {
           return false;
         },
         (r) {
-          if (r?.id != null) unawaited(_sharedPrefs.saveInt(USER_ID, r!.id));
+          if (r?.id != null) unawaited(_sharedPrefs.saveInt(Constants.USER_ID, r!.id));
           return true;
         },
       );
