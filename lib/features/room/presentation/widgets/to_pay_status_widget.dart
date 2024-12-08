@@ -23,7 +23,7 @@ class TotalPaymentStatus extends StatelessWidget {
             duration: const Duration(milliseconds: 300),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
-              color: theme.colorScheme.primary,
+              color: theme.primaryColor,
             ),
           ),
         ),
@@ -32,7 +32,7 @@ class TotalPaymentStatus extends StatelessWidget {
           child: Text(
             "Оплачено: ${toPayPercent * 100} %",
             style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onPrimary,
+              color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
           ),
