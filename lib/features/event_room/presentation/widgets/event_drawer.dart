@@ -4,10 +4,13 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:split_bill/core/DI/dependencies_config.dart';
 import 'package:split_bill/core/local_data/shared_preferences.dart';
+import 'package:split_bill/core/router/app_router.dart';
 import 'package:split_bill/core/theme/theme_notifier.dart';
+import 'package:split_bill/features/event_room/presentation/provider/event_room_provider.dart';
+import 'package:split_bill/features/login/presentation/provider/login_provider.dart';
 
 class EventDrawer extends StatefulWidget {
-  const EventDrawer({Key? key}) : super(key: key);
+  const EventDrawer({super.key});
 
   @override
   State<EventDrawer> createState() => _EventDrawerState();
@@ -51,8 +54,7 @@ class _EventDrawerState extends State<EventDrawer> {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        List<bool> animatedItems =
-            List.generate(imagePaths.length, (index) => false);
+        List<bool> animatedItems = List.generate(imagePaths.length, (index) => false);
 
         return StatefulBuilder(
           builder: (context, setState) {
@@ -82,8 +84,7 @@ class _EventDrawerState extends State<EventDrawer> {
                   const SizedBox(height: 16),
                   Expanded(
                     child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10,
@@ -181,9 +182,7 @@ class _EventDrawerState extends State<EventDrawer> {
                         CircleAvatar(
                           radius: 50,
                           backgroundColor: Colors.grey[300],
-                          backgroundImage: selectedImage != null
-                              ? AssetImage(selectedImage!)
-                              : null,
+                          backgroundImage: selectedImage != null ? AssetImage(selectedImage!) : null,
                           child: selectedImage == null
                               ? const Icon(
                                   Icons.person,
@@ -226,9 +225,7 @@ class _EventDrawerState extends State<EventDrawer> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: theme.brightness == Brightness.dark
-                          ? Colors.black
-                          : Colors.black,
+                      color: theme.brightness == Brightness.dark ? Colors.black : Colors.black,
                     ),
                   ),
                   const SizedBox(height: 5),
@@ -236,9 +233,7 @@ class _EventDrawerState extends State<EventDrawer> {
                     'user@example.com',
                     style: TextStyle(
                       fontSize: 14,
-                      color: theme.brightness == Brightness.dark
-                          ? Colors.grey[700]
-                          : Colors.grey[700],
+                      color: theme.brightness == Brightness.dark ? Colors.grey[700] : Colors.grey[700],
                     ),
                   ),
                 ],
@@ -253,8 +248,7 @@ class _EventDrawerState extends State<EventDrawer> {
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: theme.primaryColor,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -263,21 +257,13 @@ class _EventDrawerState extends State<EventDrawer> {
                   context.read<ThemeNotifier>().toggleTheme();
                 },
                 icon: Icon(
-                  theme.brightness == Brightness.dark
-                      ? Icons.light_mode
-                      : Icons.dark_mode,
-                  color: theme.brightness == Brightness.dark
-                      ? Colors.black
-                      : Colors.black,
+                  theme.brightness == Brightness.dark ? Icons.light_mode : Icons.dark_mode,
+                  color: theme.brightness == Brightness.dark ? Colors.black : Colors.black,
                 ),
                 label: Text(
-                  theme.brightness == Brightness.dark
-                      ? 'Light Theme'
-                      : 'Dark Theme',
+                  theme.brightness == Brightness.dark ? 'Light Theme' : 'Dark Theme',
                   style: TextStyle(
-                    color: theme.brightness == Brightness.dark
-                        ? Colors.black
-                        : Colors.black,
+                    color: theme.brightness == Brightness.dark ? Colors.black : Colors.black,
                   ),
                 ),
               ),
@@ -289,15 +275,15 @@ class _EventDrawerState extends State<EventDrawer> {
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                onPressed: () {
-                  // Use GoRouter to navigate to login
-                  context.go('/login');
+                onPressed: () async {
+                  await context.read<EventRoomProvider>().logout().then(
+                        (value) => context.go('/login'),
+                      );
                 },
                 icon: const Icon(
                   Icons.logout,

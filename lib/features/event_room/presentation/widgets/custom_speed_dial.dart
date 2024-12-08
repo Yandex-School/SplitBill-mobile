@@ -118,4 +118,52 @@ class _CustomSpeedDialState extends State<CustomSpeedDial> {
       ),
     );
   }
+
+  Future<dynamic> _showDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          insetPadding: const EdgeInsets.symmetric(horizontal: AppDimens.MARGIN_16),
+          child: Container(
+            padding: const EdgeInsets.all(AppDimens.PADDING_16),
+            height: 200,
+            child: Column(
+              children: [
+                const Text("Введите названия комнаты"),
+                const Gap(10),
+                TextField(
+                  controller: _textEditingController,
+                  decoration: const InputDecoration(
+                    hintText: "Введите названия",
+                    labelStyle: TextStyle(
+                      color: TextUtils.grey,
+                      fontSize: 14,
+                    ),
+                    prefixIcon: Icon(Icons.lock, color: TextUtils.grey),
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    await context.read<EventRoomProvider>().createRoom(
+                          _textEditingController.text,
+                          (roomId) => context.go('/event-rooms/room/$roomId'),
+                        );
+
+                    if (mounted) {
+                      context.pop();
+                    }
+                  },
+                  child: const Text('Войти'),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 }

@@ -1,8 +1,6 @@
 name: split_bill
 description: "A new Flutter project."
-# The following line prevents the package from being accidentally published to
-# pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: "none" # Remove this line if you wish to publish to pub.dev
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -34,6 +32,8 @@ dependencies:
   qr_flutter: ^4.1.0
   freezed: ^2.5.7
   dartz: ^0.10.1
+  flutter_native_splash: ^2.4.3
+  flutter_launcher_icons: ^0.14.2
   pretty_dio_logger: ^1.4.0
 
 dev_dependencies:
@@ -43,36 +43,17 @@ dev_dependencies:
     sdk: flutter
   json_annotation: ^4.9.0
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   json_serializable: ^6.9.0
   pretty_logger: ^1.0.0
   retrofit_generator: ^9.1.5
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-# The following section is specific to Flutter packages.
 flutter:
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/png/
     - assets/images/1page.png
     - assets/images/2page.png
     - assets/images/3page.png
-    - assets/png/person-0.png
-    - assets/png/person-1.png
-    - assets/png/person-2.png
-    - assets/png/person-3.png
-    - assets/png/person-4.png
-    - assets/png/person-5.png
-    - assets/png/person-6.png
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

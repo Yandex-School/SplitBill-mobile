@@ -8,5 +8,10 @@ void _initEventRoom() async {
   getIt.registerLazySingleton<IEventRoomRepository>(() => EventRoomRepositoryImpl(eventAPI: getIt()));
 
 /* =============================PROVIDER=================================== */
-  getIt.registerLazySingleton(() => EventRoomProvider(eventRoomRepository: getIt()));
+  getIt.registerLazySingleton(
+    () => EventRoomProvider(
+      eventRoomRepository: getIt(),
+      sharedPrefsService: getIt(),
+    ),
+  );
 }

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:split_bill/features/event_room/presentation/widgets/event_drawer.dart';
-import 'package:split_bill/features/event_room/presentation/widgets/list_item.dart';
-import 'package:split_bill/features/event_room/presentation/widgets/custom_speed_dial.dart';
+import 'package:split_bill/core/router/routes_name.dart';
 import 'package:split_bill/core/theme/theme_notifier.dart';
 import 'package:split_bill/features/event_room/presentation/provider/event_room_provider.dart';
+import 'package:split_bill/features/event_room/presentation/widgets/custom_speed_dial.dart';
+import 'package:split_bill/features/event_room/presentation/widgets/event_drawer.dart';
 import 'package:split_bill/features/event_room/presentation/widgets/list_item.dart';
-import 'package:split_bill/core/theme/theme_notifier.dart';
-import '../widgets/custom_speed_dial.dart';
 
 class EventScreen extends StatefulWidget {
   const EventScreen({super.key});
@@ -67,21 +65,24 @@ class _EventScreenState extends State<EventScreen> {
       ),
       body: Consumer<EventRoomProvider>(
         builder: (context, state, _) {
-          return ListView.separated(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-            itemCount: state.roomsData?.length ?? 0,
-            itemBuilder: (context, index) {
-              return ListItem(
-                roomsData: state.roomsData?[index],
-                onTap: () => context
-                    .go('/event-rooms/room/${state.roomsData?[index].id}'),
-                onAdd: () {},
-                onEdit: () => {},
-                onDelete: () => {},
-              );
+          return RefreshIndicator.adaptive(
+            onRefresh: () async {
+              context.read<EventRoomProvider>().getRooms();
             },
-            separatorBuilder: (context, index) => const SizedBox(height: 12),
+            child: ListView.separated(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+              itemCount: state.roomsData?.length ?? 0,
+              itemBuilder: (context, index) {
+                return ListItem(
+                  roomsData: state.roomsData?[index],
+                  onTap: () => context.go('/event-rooms/room/${state.roomsData?[index].id}'),
+                  onAdd: () {},
+                  onEdit: () => {},
+                  onDelete: () => {},
+                );
+              },
+              separatorBuilder: (context, index) => const SizedBox(height: 12),
+            ),
           );
         },
       ),

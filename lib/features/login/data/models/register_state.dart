@@ -24,7 +24,7 @@ class RegisterState with _$RegisterState {
         loading: false,
       );
 
-  bool get isPasswordMatch => password == confirmPassword;
+  bool get isPasswordMatch => password != confirmPassword;
 
   bool get fieldsAreValid =>
       nickname.isNotEmpty && password.isNotEmpty && confirmPassword.isNotEmpty && isPasswordMatch;

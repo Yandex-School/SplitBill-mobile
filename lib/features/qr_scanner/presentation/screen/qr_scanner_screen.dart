@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -21,11 +23,23 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
   void initState() {
     eventProvider = context.read<EventRoomProvider>();
     cameraController.start();
+    eventProvider.addListener(_initListener);
     super.initState();
+  }
+
+  void _initListener() {
+    if (eventProvider.failure != null) {
+      context.scaffoldMessage.showSnackBar(const SnackBar(content: Text('Something went error')));
+    }
+
+    if (eventProvider.isJoined != null && eventProvider.isJoined == true) {
+      context.go('/event-rooms/room/${eventProvider.currentRoomId}');
+    }
   }
 
   @override
   void dispose() {
+    eventProvider.removeListener(_initListener);
     cameraController.stop();
     super.dispose();
   }
@@ -39,13 +53,6 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
     final left = (width - scanWindowWidth) / 2;
     final top = (height - scanWindowHeight) / 3;
 
-    eventProvider.addListener(() {
-      if (eventProvider.isJoined == true) context.go('/event-rooms/room');
-      if (eventProvider.failure != null) {
-        context.go('/events-rooms/');
-      }
-    });
-
     return Scaffold(
       body: Stack(
         children: [
@@ -54,11 +61,12 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
             overlayBuilder: (context, constraints) {
               return const QRScannerOverlay(overlayColour: Colors.black38);
             },
-            onDetect: (barcodes) {
-              context.go('/room'); //TODO: cпросить у Аваза при скане нужно отправлять в листенер id с баркода
+            onDetect: (barcode) {
+              eventProvider.setRoomId(barcode.barcodes.first.displayValue!);
             },
             scanWindow: Rect.fromLTWH(left, top, scanWindowWidth, scanWindowHeight),
           ),
+         
           Align(
             alignment: Alignment.topLeft,
             child: SafeArea(

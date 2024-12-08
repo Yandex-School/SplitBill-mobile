@@ -1,6 +1,9 @@
 import 'package:concentric_transition/page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:split_bill/core/DI/dependencies_config.dart';
+import 'package:split_bill/core/local_data/shared_preferences.dart';
+import 'package:split_bill/core/utils/const.dart';
 import 'package:split_bill/features/onboarding/presentation/widgets/page_data.dart';
 import 'package:split_bill/features/onboarding/presentation/widgets/page_widget.dart';
 
@@ -8,7 +11,8 @@ final pages = [
   const PageData(
     imagePath: 'assets/images/1page.png',
     title: "SplitBill – Упростите совместные расходы",
-    description: "Легко управляйте групповыми расходами, отслеживайте траты и рассчитывайтесь без лишних сложностей.",
+    description:
+        "Легко управляйте групповыми расходами, отслеживайте траты и рассчитывайтесь без лишних сложностей.",
     bgColor: Color(0xff051326),
     textColor: Colors.white,
   ),
@@ -23,7 +27,8 @@ final pages = [
   const PageData(
     imagePath: 'assets/images/3page.png',
     title: "Будьте организованными и экономьте время",
-    description: "Четкие отчёты, обновления в реальном времени и удобные платежи — всё в одном приложении.",
+    description:
+        "Четкие отчёты, обновления в реальном времени и удобные платежи — всё в одном приложении.",
     bgColor: Color(0xffffffff),
     textColor: Color(0xff051326),
   ),
@@ -48,7 +53,14 @@ class ConcentricAnimationOnboarding extends StatelessWidget {
           ),
         ),
         scaleFactor: 2,
+        onChange: (page) {
+          if (page == pages.length) {
+            context.go('/login');
+            getIt<SharedPrefsService>().saveBool(Constants.PASSED_ON_BOARDING, true);
+          }
+        },
         onFinish: () {
+          getIt<SharedPrefsService>().saveBool(Constants.PASSED_ON_BOARDING, true);
           context.go('/login');
         },
         itemBuilder: (index) {
