@@ -55,7 +55,7 @@ class _EventScreenState extends State<EventScreen> {
               theme.brightness == Brightness.dark ? Icons.light_mode : Icons.dark_mode,
               color: theme.iconTheme.color,
             ),
-            onPressed: () {
+            onPressed: ()  {
               context.read<ThemeNotifier>().toggleTheme();
             },
           ),

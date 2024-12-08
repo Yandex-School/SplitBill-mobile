@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:split_bill/core/errors/failures.dart';
 import 'package:split_bill/core/local_data/shared_preferences.dart';
@@ -14,7 +16,7 @@ class EventRoomProvider extends ChangeNotifier {
   CreateRoomResponseEntity? roomResponse;
   List<CreatedRoomsResponseItemsEntity>? roomsData;
   bool? isJoined;
-  String? roomId;
+  String? currentRoomId;
   Failure? failure;
 
   EventRoomProvider({
@@ -24,10 +26,11 @@ class EventRoomProvider extends ChangeNotifier {
 
   Future<bool> logout() async {
     try {
+      // TODO: не круто
       await sharedPrefsService.delete(Constants.USER_ID);
       return true;
     } on Object catch (e) {
-      print(e);
+      log(e.toString());
       return false;
     }
   }
@@ -51,9 +54,13 @@ class EventRoomProvider extends ChangeNotifier {
     });
   }
 
-  void setRoomId(String? id) {
-    roomId = id;
-    notifyListeners();
+  Future<void> setRoomId(String id) async {
+    if (currentRoomId == id) {
+      return;
+    }
+    // log('test join');
+    currentRoomId = id;
+    await joinRoom(id);
   }
 
   Future<void> joinRoom(
@@ -64,14 +71,18 @@ class EventRoomProvider extends ChangeNotifier {
     response.fold(
       (error) {
         failure = error;
-
         notifyListeners();
+        currentRoomId = null;
       },
       (data) {
         isJoined = data;
         notifyListeners();
       },
     );
+  }
+
+  void closeRoom() {
+    currentRoomId = null;
   }
 
   void getRooms() async {

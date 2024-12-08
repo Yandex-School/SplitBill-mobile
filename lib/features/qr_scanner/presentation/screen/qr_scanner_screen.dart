@@ -16,10 +16,7 @@ class QrScannerScreen extends StatefulWidget {
 }
 
 class _QrScannerScreenState extends State<QrScannerScreen> {
-  MobileScannerController cameraController = MobileScannerController(
-    detectionSpeed: DetectionSpeed.noDuplicates,
-    detectionTimeoutMs: 1000,
-  );
+  MobileScannerController cameraController = MobileScannerController();
   late final EventRoomProvider eventProvider;
 
   @override
@@ -31,11 +28,12 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
   }
 
   void _initListener() {
-    if (eventProvider.roomId != null) {
-      eventProvider.joinRoom(eventProvider.roomId!);
+    if (eventProvider.failure != null) {
+      context.scaffoldMessage.showSnackBar(const SnackBar(content: Text('Something went error')));
     }
+
     if (eventProvider.isJoined != null && eventProvider.isJoined == true) {
-      context.go('/event-rooms/room/${eventProvider.roomId}');
+      context.go('/event-rooms/room/${eventProvider.currentRoomId}');
     }
   }
 
@@ -64,11 +62,11 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
               return const QRScannerOverlay(overlayColour: Colors.black38);
             },
             onDetect: (barcode) {
-              eventProvider.setRoomId(barcode.barcodes.first.displayValue);
-              // log(barcode.barcodes.first.displayValue.toString());
+              eventProvider.setRoomId(barcode.barcodes.first.displayValue!);
             },
             scanWindow: Rect.fromLTWH(left, top, scanWindowWidth, scanWindowHeight),
           ),
+         
           Align(
             alignment: Alignment.topLeft,
             child: SafeArea(
