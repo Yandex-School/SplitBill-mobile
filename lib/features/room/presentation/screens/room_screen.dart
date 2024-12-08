@@ -59,7 +59,6 @@ class _RoomScreenState extends State<RoomScreen> {
                 color: theme.primaryTextTheme.titleLarge?.color,
               ),
             ),
-
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(AppDimens.BORDER_RADIUS_40),
