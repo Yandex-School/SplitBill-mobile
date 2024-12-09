@@ -6,10 +6,9 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:split_bill/core/enums/enums.dart';
 import 'package:split_bill/core/extensions/media_query_extension.dart';
-import 'package:split_bill/core/scope/provider_scope.dart';
 import 'package:split_bill/core/theme/app_diemens.dart';
-import 'package:split_bill/features/room/presentation/provider/room_provider.dart';
 import 'package:split_bill/features/event_room/presentation/provider/event_room_provider.dart';
+import 'package:split_bill/features/room/presentation/provider/room_provider.dart';
 import 'package:split_bill/features/room/presentation/widgets/guest_item.dart';
 import 'package:split_bill/features/room/presentation/widgets/payment_info_status_widget.dart';
 
@@ -163,8 +162,7 @@ class _RoomScreenState extends State<RoomScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () =>
-            context.go('/event-rooms/room/${widget.roomId}/scan-room/123123'),
+        onPressed: () => context.go('/event-rooms/room/${widget.roomId}/scan-room/123123'),
         backgroundColor: theme.primaryColor,
         child: const Icon(Icons.qr_code_2_rounded, color: Colors.black),
       ),
