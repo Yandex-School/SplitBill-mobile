@@ -10,11 +10,13 @@ abstract class RoomApi {
   factory RoomApi(Dio dio, {String baseUrl}) = _RoomApi;
 
   @GET('/v1/rooms/{id}')
-  Future<RoomInfoResponseModel> getRooms({
+  Future<RoomInfoResponseModel?> getRooms({
     @Path() required String id,
   });
 
   @PUT('/v1/rooms/{id}')
-  Future<RoomInfoResponseModel> updateRoom(
-      {@Path() required String id, @Body() required RoomUpdateRequestModel updateRequest});
+  Future<RoomInfoResponseModel> updateRoom({
+    @Path() required String id,
+    @Body() required RoomUpdateRequestModel updateRequest,
+  });
 }
