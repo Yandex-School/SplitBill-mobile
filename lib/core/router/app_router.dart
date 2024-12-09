@@ -8,14 +8,13 @@ import 'package:split_bill/features/login/presentation/screen/login_screen.dart'
 import 'package:split_bill/features/login/presentation/screen/sign_up_screen.dart';
 import 'package:split_bill/features/onboarding/presentation/screen/on_boarding_screen.dart';
 import 'package:split_bill/features/product_room/presentation%20/page/tab_bar.dart';
-import 'package:split_bill/features/product_room/presentation%20/provider/room_products_provider.dart';
-import 'package:split_bill/features/product_room/presentation%20/room_products.dart';
+import 'package:split_bill/features/product_room/presentation/provider/room_products_provider.dart';
+import 'package:split_bill/features/product_room/presentation/room_products.dart';
 import 'package:split_bill/features/qr_scanner/presentation/screen/qr_scanner_screen.dart';
 import 'package:split_bill/features/room/presentation/provider/room_provider.dart';
 import 'package:split_bill/features/room/presentation/screens/room_screen.dart';
 import 'package:split_bill/features/scan_room/presentation/screen/scan_room.dart';
 import 'package:split_bill/features/splash_screen/presentation/pages/splash_screen.dart';
-
 
 class AppRouter {
   final SharedPrefsService sharedPrefsService;

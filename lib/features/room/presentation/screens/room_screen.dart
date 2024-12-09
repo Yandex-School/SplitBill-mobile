@@ -27,18 +27,13 @@ class _RoomScreenState extends State<RoomScreen> {
   @override
   void initState() {
     if (widget.roomId != null) {
+      eventRoomProvider = context.read<EventRoomProvider>();
       context.read<RoomProvider>().initData(widget.roomId!);
     }
     super.initState();
   }
 
   late final EventRoomProvider eventRoomProvider;
-
-  @override
-  void initState() {
-    eventRoomProvider = context.read<EventRoomProvider>();
-    super.initState();
-  }
 
   @override
   void dispose() {
@@ -54,8 +49,7 @@ class _RoomScreenState extends State<RoomScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      body:
-      Consumer<RoomProvider>(
+      body: Consumer<RoomProvider>(
         builder: (context, roomProvider, child) {
           return CustomScrollView(
             slivers: [
@@ -87,11 +81,9 @@ class _RoomScreenState extends State<RoomScreen> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: theme.primaryColor,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 40),
+                          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
                           shape: RoundedRectangleBorder(
-                            borderRadius:
-                            BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
+                            borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
                           ),
                         ),
                         child: const Text(
@@ -116,8 +108,7 @@ class _RoomScreenState extends State<RoomScreen> {
               ),
               SliverToBoxAdapter(
                 child: Container(
-                  margin:
-                  const EdgeInsets.symmetric(horizontal: AppDimens.PADDING_16),
+                  margin: const EdgeInsets.symmetric(horizontal: AppDimens.PADDING_16),
                   width: context.width,
                   height: context.height * 0.05,
                   decoration: BoxDecoration(
@@ -144,7 +135,8 @@ class _RoomScreenState extends State<RoomScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.go('/event-rooms/room/${widget.roomId}/scan-room/${widget.roomId}'),
+        onPressed: () =>
+            context.go('/event-rooms/room/${widget.roomId}/scan-room/${widget.roomId}'),
         backgroundColor: theme.primaryColor,
         child: const Icon(Icons.qr_code_2_rounded, color: Colors.black),
       ),

@@ -5,7 +5,8 @@ void _initEventRoom() async {
   getIt.registerLazySingleton(() => EventRoomApi(getIt()));
 
 /* =============================REPOSITORIES=========================== */
-  getIt.registerLazySingleton<IEventRoomRepository>(() => EventRoomRepositoryImpl(eventAPI: getIt()));
+  getIt.registerLazySingleton<IEventRoomRepository>(
+      () => EventRoomRepositoryImpl(eventAPI: getIt()));
 
 /* =============================PROVIDER=================================== */
   getIt.registerLazySingleton(

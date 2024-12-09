@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:split_bill/core/router/routes_name.dart';
 import 'package:split_bill/core/theme/app_diemens.dart';
-import 'package:split_bill/core/theme/theme_notifier.dart';
 import 'package:split_bill/features/event_room/presentation/provider/event_room_provider.dart';
 import 'package:split_bill/features/event_room/presentation/widgets/custom_speed_dial.dart';
 import 'package:split_bill/features/event_room/presentation/widgets/event_drawer.dart';
@@ -29,13 +27,7 @@ class _EventScreenState extends State<EventScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      drawer: EventDrawer(
-        onLogout: () {
-          context.read<EventRoomProvider>().logout().then((success) {
-            if (success) context.go(RoutesName.initial);
-          });
-        },
-      ), // Drawer widget moved to `event_drawer.dart`
+      drawer: const EventDrawer(), // Drawer widget moved to `event_drawer.dart`
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: theme.iconTheme.color ?? Colors.black,
@@ -55,7 +47,6 @@ class _EventScreenState extends State<EventScreen> {
             color: Colors.black,
           ),
         ),
-        
       ),
       body: Consumer<EventRoomProvider>(
         builder: (context, state, _) {
