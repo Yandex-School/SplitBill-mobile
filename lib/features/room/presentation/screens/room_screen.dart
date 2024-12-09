@@ -27,18 +27,13 @@ class _RoomScreenState extends State<RoomScreen> {
   @override
   void initState() {
     if (widget.roomId != null) {
+      eventRoomProvider = context.read<EventRoomProvider>();
       context.read<RoomProvider>().initData(widget.roomId!);
     }
     super.initState();
   }
 
   late final EventRoomProvider eventRoomProvider;
-
-  @override
-  void initState() {
-    eventRoomProvider = context.read<EventRoomProvider>();
-    super.initState();
-  }
 
   @override
   void dispose() {
@@ -68,31 +63,9 @@ class _RoomScreenState extends State<RoomScreen> {
                     color: theme.primaryTextTheme.titleLarge?.color,
                   ),
                 ),
-
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(
-                    bottom: Radius.circular(AppDimens.BORDER_RADIUS_20),
-                  ),
-                ),
-                flexibleSpace: FlexibleSpaceBar(
-                  background: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SizedBox(
-                      width: 150,
-                      height: 150,
-                      // child: PieChart(
-                      //   PieChartData(
-                      //     pieTouchData: PieTouchData(),
-                      //     sections: [
-                      //       PieChartSectionData(),
-                      //       PieChartSectionData(),
-                      //       PieChartSectionData(),
-                      //       PieChartSectionData(),
-                      //       PieChartSectionData(),
-                      //     ],
-                      //   ),
-                      // ),
-                    ),
+                    bottom: Radius.circular(AppDimens.BORDER_RADIUS_40),
                   ),
                 ),
               ),
@@ -162,7 +135,8 @@ class _RoomScreenState extends State<RoomScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.go('/event-rooms/room/${widget.roomId}/scan-room/123123'),
+        onPressed: () =>
+            context.go('/event-rooms/room/${widget.roomId}/scan-room/${widget.roomId}'),
         backgroundColor: theme.primaryColor,
         child: const Icon(Icons.qr_code_2_rounded, color: Colors.black),
       ),

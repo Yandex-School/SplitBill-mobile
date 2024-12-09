@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:split_bill/core/router/routes_name.dart';
-import 'package:split_bill/core/theme/theme_notifier.dart';
+import 'package:split_bill/core/theme/app_diemens.dart';
 import 'package:split_bill/features/event_room/presentation/provider/event_room_provider.dart';
 import 'package:split_bill/features/event_room/presentation/widgets/custom_speed_dial.dart';
 import 'package:split_bill/features/event_room/presentation/widgets/event_drawer.dart';
@@ -18,8 +17,8 @@ class EventScreen extends StatefulWidget {
 class _EventScreenState extends State<EventScreen> {
   @override
   void initState() {
-    context.read<EventRoomProvider>().getRooms();
     super.initState();
+    context.read<EventRoomProvider>().getRooms();
   }
 
   @override
@@ -28,12 +27,16 @@ class _EventScreenState extends State<EventScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      drawer: const EventDrawer(),
-      // Drawer widget moved to `event_drawer.dart`
+      drawer: const EventDrawer(), // Drawer widget moved to `event_drawer.dart`
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: theme.iconTheme.color ?? Colors.black,
+        ),
         backgroundColor: theme.primaryColor,
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(AppDimens.BORDER_RADIUS_40),
+          ),
         ),
         centerTitle: true,
         title: const Text(
@@ -44,24 +47,6 @@ class _EventScreenState extends State<EventScreen> {
             color: Colors.black,
           ),
         ),
-        iconTheme: IconThemeData(
-          color: Colors.black
-        ),
-        // leading: IconButton(
-        //     onPressed: () => Scaffold.of(context).openDrawer(),
-        //     icon: Icon(Icons.menu)),
-        actions: [
-          IconButton(
-            icon: Icon(
-                theme.brightness == Brightness.dark
-                    ? Icons.light_mode
-                    : Icons.dark_mode,
-                color: Colors.black),
-            onPressed: () {
-              context.read<ThemeNotifier>().toggleTheme();
-            },
-          ),
-        ],
       ),
       body: Consumer<EventRoomProvider>(
         builder: (context, state, _) {

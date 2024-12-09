@@ -4,10 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:split_bill/core/DI/dependencies_config.dart';
 import 'package:split_bill/core/local_data/shared_preferences.dart';
-import 'package:split_bill/core/router/app_router.dart';
 import 'package:split_bill/core/theme/theme_notifier.dart';
 import 'package:split_bill/features/event_room/presentation/provider/event_room_provider.dart';
-import 'package:split_bill/features/login/presentation/provider/login_provider.dart';
 
 class EventDrawer extends StatefulWidget {
   const EventDrawer({super.key});
@@ -162,7 +160,6 @@ class _EventDrawerState extends State<EventDrawer> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Drawer Header
             Container(
               padding: const EdgeInsets.all(60),
               decoration: BoxDecoration(
@@ -182,7 +179,8 @@ class _EventDrawerState extends State<EventDrawer> {
                         CircleAvatar(
                           radius: 50,
                           backgroundColor: Colors.grey[300],
-                          backgroundImage: selectedImage != null ? AssetImage(selectedImage!) : null,
+                          backgroundImage:
+                              selectedImage != null ? AssetImage(selectedImage!) : null,
                           child: selectedImage == null
                               ? const Icon(
                                   Icons.person,
@@ -233,7 +231,8 @@ class _EventDrawerState extends State<EventDrawer> {
                     'user@example.com',
                     style: TextStyle(
                       fontSize: 14,
-                      color: theme.brightness == Brightness.dark ? Colors.grey[700] : Colors.grey[700],
+                      color:
+                          theme.brightness == Brightness.dark ? Colors.grey[700] : Colors.grey[700],
                     ),
                   ),
                 ],
