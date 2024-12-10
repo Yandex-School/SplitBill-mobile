@@ -7,24 +7,28 @@ part 'room_info_response_model.g.dart';
 class RoomInfoResponseModel {
   final int id;
   final String name;
+  @JsonKey(name: 'owner_id')
   final int ownerId;
-  final bool? isActive;
+  @JsonKey(name: 'room_products')
   final List<RoomProduct> roomProducts;
+  @JsonKey(name: 'total_price')
   final double totalPrice;
+  @JsonKey(name: 'total_members')
   final int totalMembers;
+  @JsonKey(name: 'room_status')
+  final String roomStatus;
 
   RoomInfoResponseModel({
     required this.id,
     required this.name,
     required this.ownerId,
-    this.isActive,
     required this.roomProducts,
     required this.totalPrice,
     required this.totalMembers,
+    required this.roomStatus,
   });
 
-  factory RoomInfoResponseModel.fromJson(Map<String, Object?> json) =>
-      _$RoomInfoResponseModelFromJson(json);
+  factory RoomInfoResponseModel.fromJson(Map<String, Object?> json) => _$RoomInfoResponseModelFromJson(json);
 
   Map<String, Object?> toJson() => _$RoomInfoResponseModelToJson(this);
 }
@@ -34,8 +38,10 @@ class RoomProduct {
   final int id;
   final String name;
   final double price;
+  @JsonKey(name: 'room_id')
   final int roomId;
-  final List<UserProduct> userProducts;
+  @JsonKey(name: 'user_products')
+  final List<UserProductModel> userProducts;
 
   RoomProduct({
     required this.id,
@@ -51,15 +57,19 @@ class RoomProduct {
 }
 
 @JsonSerializable()
-class UserProduct {
+class UserProductModel {
   final int id;
   final String status;
+  @JsonKey(name: 'product_id')
   final int productId;
+  @JsonKey(name: 'user_id')
   final int userId;
+  @JsonKey(name: 'full_name')
   final String fullName;
+  @JsonKey(name: 'photo_url')
   final String photoUrl;
 
-  UserProduct({
+  UserProductModel({
     required this.id,
     required this.status,
     required this.productId,
@@ -68,7 +78,7 @@ class UserProduct {
     required this.photoUrl,
   });
 
-  factory UserProduct.fromJson(Map<String, dynamic> json) => _$UserProductFromJson(json);
+  factory UserProductModel.fromJson(Map<String, dynamic> json) => _$UserProductModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UserProductToJson(this);
+  Map<String, dynamic> toJson() => _$UserProductModelToJson(this);
 }

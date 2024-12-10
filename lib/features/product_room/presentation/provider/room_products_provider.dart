@@ -1,21 +1,21 @@
 import 'package:flutter/cupertino.dart';
-import 'package:split_bill/features/product_room/domain/room_product_entity.dart';
-import 'package:split_bill/features/product_room/domain/room_products_tab_state.dart';
+import 'package:split_bill/features/product_room/domain/entities/room_product_entity.dart';
+import 'package:split_bill/features/product_room/domain/entities/room_products_tab_state.dart';
 
 class RoomProductsProvider extends ChangeNotifier {
   RoomProductsTabState _productsTabState = RoomProductsTabState.initial();
 
   bool get isLoadingProducts => _productsTabState.isLoading;
 
-  List<RoomProductEntity> get products => _productsTabState.products;
+  List<Product> get products => _productsTabState.products;
 
-  void intiWithProducts(List<RoomProductEntity> products) {
+  void intiWithProducts(List<Product> products) {
     _productsTabState = _productsTabState.copyWith(products: products);
   }
 
   void _setProductsTabState({
     bool? isLoading,
-    List<RoomProductEntity>? products,
+    List<Product>? products,
   }) {
     _productsTabState = _productsTabState.copyWith(
       isLoading: isLoading ?? _productsTabState.isLoading,
@@ -28,13 +28,11 @@ class RoomProductsProvider extends ChangeNotifier {
     required String name,
     required int price,
     int? replacementIndex,
+    List<int>? users,
   }) {
-    final newProduct = RoomProductEntity(
-      name: name,
-      price: price,
-    );
+    final newProduct = Product(name: name, price: price, addUsers: users, status: "UNPAID");
 
-    final newProducts = List<RoomProductEntity>.from(products);
+    final newProducts = List<Product>.from(products);
     if (replacementIndex != null) {
       newProducts[replacementIndex] = newProduct;
     } else {
@@ -43,8 +41,8 @@ class RoomProductsProvider extends ChangeNotifier {
     _setProductsTabState(products: newProducts);
   }
 
-  void removeProduct(RoomProductEntity product) {
-    final newProducts = List<RoomProductEntity>.from(products)..remove(product);
+  void removeProduct(Product product) {
+    final newProducts = List<Product>.from(products)..remove(product);
     _setProductsTabState(products: newProducts);
   }
 

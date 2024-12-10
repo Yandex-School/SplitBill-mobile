@@ -4,6 +4,7 @@ import 'package:split_bill/core/DI/dependencies_config.dart';
 import 'package:split_bill/core/theme/theme_notifier.dart';
 import 'package:split_bill/features/event_room/presentation/provider/event_room_provider.dart';
 import 'package:split_bill/features/login/presentation/provider/login_provider.dart';
+import 'package:split_bill/features/room/presentation/provider/room_provider.dart';
 
 class ProviderScope extends StatelessWidget {
   final Widget child;
@@ -16,6 +17,7 @@ class ProviderScope extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => getIt<EventRoomProvider>(),
         ),
+        ChangeNotifierProvider(create: (_) => getIt<RoomProvider>()),
         ChangeNotifierProvider(
           create: (_) => LoginProvider(),
         ),

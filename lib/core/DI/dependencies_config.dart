@@ -13,7 +13,7 @@ import 'package:split_bill/features/login/data/auth_datasource.dart';
 import 'package:split_bill/features/login/data/login_data_source.dart';
 import 'package:split_bill/features/login/domain/login_repository.dart';
 import 'package:split_bill/features/login/presentation/provider/login_provider.dart';
-import 'package:split_bill/features/product_room/presentation%20/provider/room_products_provider.dart';
+import 'package:split_bill/features/product_room/presentation/provider/room_products_provider.dart';
 import 'package:split_bill/features/room/data/datasources/room_remote_datasource.dart';
 import 'package:split_bill/features/room/data/repository/room_repository_impl.dart';
 import 'package:split_bill/features/room/domain/repository/room_repository.dart';

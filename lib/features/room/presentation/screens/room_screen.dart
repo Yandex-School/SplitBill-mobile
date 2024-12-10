@@ -24,19 +24,14 @@ class RoomScreen extends StatefulWidget {
 }
 
 class _RoomScreenState extends State<RoomScreen> {
-  @override
-  void initState() {
-    if (widget.roomId != null) {
-      context.read<RoomProvider>().initData(widget.roomId!);
-    }
-    super.initState();
-  }
-
   late final EventRoomProvider eventRoomProvider;
+  late final RoomProvider roomProvider;
 
   @override
   void initState() {
     eventRoomProvider = context.read<EventRoomProvider>();
+    roomProvider = context.read<RoomProvider>();
+    roomProvider.initData(widget.roomId!);
     super.initState();
   }
 
@@ -56,6 +51,12 @@ class _RoomScreenState extends State<RoomScreen> {
       backgroundColor: theme.scaffoldBackgroundColor,
       body: Consumer<RoomProvider>(
         builder: (context, roomProvider, child) {
+          if (roomProvider.status == Status.loading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
           return CustomScrollView(
             slivers: [
               SliverAppBar(
@@ -63,7 +64,7 @@ class _RoomScreenState extends State<RoomScreen> {
                 backgroundColor: theme.primaryColor,
                 // expandedHeight: context.height * 0.4,
                 title: Text(
-                  "Bobur",
+                  roomProvider.roomInfo?.name ?? 'null',
                   style: theme.textTheme.titleLarge?.copyWith(
                     color: theme.primaryTextTheme.titleLarge?.color,
                   ),
@@ -74,25 +75,13 @@ class _RoomScreenState extends State<RoomScreen> {
                     bottom: Radius.circular(AppDimens.BORDER_RADIUS_20),
                   ),
                 ),
-                flexibleSpace: FlexibleSpaceBar(
-                  background: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SizedBox(
-                      width: 150,
-                      height: 150,
-                      // child: PieChart(
-                      //   PieChartData(
-                      //     pieTouchData: PieTouchData(),
-                      //     sections: [
-                      //       PieChartSectionData(),
-                      //       PieChartSectionData(),
-                      //       PieChartSectionData(),
-                      //       PieChartSectionData(),
-                      //       PieChartSectionData(),
-                      //     ],
-                      //   ),
-                      // ),
-                    ),
+              ),
+              const SliverGap(10),
+              SliverToBoxAdapter(
+                child: Center(
+                  child: Text(
+                    " Сумма: ${roomProvider.roomInfo?.totalPrice.toString()} ",
+                    style: context.theme.textTheme.bodyLarge,
                   ),
                 ),
               ),
@@ -148,12 +137,51 @@ class _RoomScreenState extends State<RoomScreen> {
               const SliverGap(10),
               const PaymentInfoStatusWidget(paid: 540, toPay: 140),
               const SliverGap(10),
+              SliverPadding(
+                padding: const EdgeInsets.all(16),
+                sliver: SliverToBoxAdapter(
+                  child: Text("Количество участников: ${roomProvider.roomInfo?.totalMembers}"),
+                ),
+              ),
               SliverList.builder(
-                itemCount: 100,
+                itemCount: roomProvider.userData?.data.length ?? 0,
                 itemBuilder: (context, index) {
-                  return const GuestItem(
-                    name: 'Bobur',
-                    payStatus: PayStatus.INITAL,
+                  final item = roomProvider.userData?.data[index];
+                  return GuestItem(
+                    name: item?.fullName ?? "",
+                    amount: item?.amount.toString() ?? '',
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => SimpleDialog(
+                          insetPadding: EdgeInsets.zero,
+                          contentPadding: const EdgeInsets.all(16),
+                          children: item?.products
+                                  .map(
+                                    (e) => Container(
+                                      margin: const EdgeInsets.symmetric(vertical: 16),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            e.name,
+                                            style: context.theme.textTheme.bodyLarge,
+                                          ),
+                                          Column(
+                                            children: [
+                                              Text(e.price.toString()),
+                                              Text(e.status),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                  .toList() ??
+                              [],
+                        ),
+                      );
+                    },
                   );
                 },
               ),

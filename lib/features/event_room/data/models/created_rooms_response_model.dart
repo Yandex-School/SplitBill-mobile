@@ -23,7 +23,7 @@ class CreatedRoomsResponseModel {
 class CreatedRoomsItemsModel {
   final int id;
   final String name;
-  @JsonKey(name: 'user_id')
+  @JsonKey(name: 'owner_id')
   final int userId;
 
   CreatedRoomsItemsModel({required this.id, required this.name, required this.userId});
