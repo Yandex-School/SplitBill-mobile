@@ -34,7 +34,7 @@ CreatedRoomsItemsModel _$CreatedRoomsItemsModelFromJson(
     CreatedRoomsItemsModel(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
-      userId: (json['user_id'] as num).toInt(),
+      userId: (json['owner_id'] as num).toInt(),
     );
 
 Map<String, dynamic> _$CreatedRoomsItemsModelToJson(
@@ -42,5 +42,5 @@ Map<String, dynamic> _$CreatedRoomsItemsModelToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'user_id': instance.userId,
+      'owner_id': instance.userId,
     };

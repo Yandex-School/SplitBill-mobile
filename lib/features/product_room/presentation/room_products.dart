@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:split_bill/features/product_room/presentation%20/provider/room_products_provider.dart';
+import 'package:split_bill/features/product_room/presentation/provider/room_products_provider.dart';
 
 class RoomProductsScreen extends StatefulWidget {
   final String? roomId;
@@ -16,8 +16,7 @@ class RoomProductsScreen extends StatefulWidget {
   _RoomProductsScreenState createState() => _RoomProductsScreenState();
 }
 
-class _RoomProductsScreenState extends State<RoomProductsScreen>
-    with SingleTickerProviderStateMixin {
+class _RoomProductsScreenState extends State<RoomProductsScreen> with SingleTickerProviderStateMixin {
   // late TabController _tabController;
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();

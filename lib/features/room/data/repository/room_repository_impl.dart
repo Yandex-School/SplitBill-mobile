@@ -1,9 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:split_bill/core/errors/failures.dart';
 import 'package:split_bill/features/room/data/datasources/room_remote_datasource.dart';
 import 'package:split_bill/features/room/data/models/mappers/room_info_response_mapper.dart';
+import 'package:split_bill/features/room/data/models/mappers/room_info_users_response_mapper.dart';
 import 'package:split_bill/features/room/domain/entities/room_info_response_entity.dart';
+import 'package:split_bill/features/room/domain/entities/room_info_users_response_entity.dart';
 import 'package:split_bill/features/room/domain/repository/room_repository.dart';
 
 class RoomRepositoryImpl implements IRoomRepository {
@@ -19,6 +23,19 @@ class RoomRepositoryImpl implements IRoomRepository {
       }
       return Right(RoomMappers.roomInfoMapper(response));
     } catch (e) {
+      log(e.toString());
+      return const Left(InitFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, RoominfoUsersResponseEntity>> getRoomUsers(String roomId) async {
+    try {
+      final response = await roomApi.getRoomUsers(id: roomId);
+      
+      return Right(RoomInfoUsersResponseMapper.mapper(response));
+    } catch (e) {
+      log(e.toString());
       return const Left(InitFailure());
     }
   }

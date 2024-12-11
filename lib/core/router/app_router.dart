@@ -7,8 +7,8 @@ import 'package:split_bill/features/event_room/presentation/pages/events_screen.
 import 'package:split_bill/features/login/presentation/screen/login_screen.dart';
 import 'package:split_bill/features/login/presentation/screen/sign_up_screen.dart';
 import 'package:split_bill/features/onboarding/presentation/screen/on_boarding_screen.dart';
-import 'package:split_bill/features/product_room/presentation%20/provider/room_products_provider.dart';
-import 'package:split_bill/features/product_room/presentation%20/room_products.dart';
+import 'package:split_bill/features/product_room/presentation/provider/room_products_provider.dart';
+import 'package:split_bill/features/product_room/presentation/room_products.dart';
 import 'package:split_bill/features/qr_scanner/presentation/screen/qr_scanner_screen.dart';
 import 'package:split_bill/features/room/presentation/provider/room_provider.dart';
 import 'package:split_bill/features/room/presentation/screens/room_screen.dart';
@@ -29,8 +29,7 @@ class AppRouter {
         path: '/',
         builder: (context, state) => const SplashScreen(),
         redirect: (context, state) {
-          final bool isPassedOnBoarding =
-              sharedPrefsService.getBool(Constants.PASSED_ON_BOARDING) ?? false;
+          final bool isPassedOnBoarding = sharedPrefsService.getBool(Constants.PASSED_ON_BOARDING) ?? false;
           final loggedIn = sharedPrefsService.getInt(Constants.USER_ID) != null;
           if (isPassedOnBoarding) {
             if (loggedIn) {
@@ -64,11 +63,8 @@ class AppRouter {
         routes: [
           GoRoute(
             path: 'room/:roomID',
-            builder: (context, state) => ChangeNotifierProvider.value(
-              value: getIt<RoomProvider>(),
-              child: RoomScreen(
-                roomId: state.pathParameters['roomID'],
-              ),
+            builder: (context, state) => RoomScreen(
+              roomId: state.pathParameters['roomID'],
             ),
             routes: [
               GoRoute(
